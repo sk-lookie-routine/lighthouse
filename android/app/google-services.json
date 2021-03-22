@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "680966701834",
+    "project_id": "lighthouse-7cd78",
+    "storage_bucket": "lighthouse-7cd78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680966701834:android:039d42f2b79923037af0f3",
+        "android_client_info": {
+          "package_name": "com.routine.lighthouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680966701834-m0230ah356dgo177fh5qkils4lv2eh9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDDV0A7bWo6v7PnkNm6VGsxaw_gBZpBV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680966701834-m0230ah356dgo177fh5qkils4lv2eh9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
