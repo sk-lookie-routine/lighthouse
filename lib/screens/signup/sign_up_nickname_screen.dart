@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
+import 'package:lighthouse/screens/signup/sign_up_moreinfo_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
-class SignUpNickName extends StatefulWidget {
-  _SignUpNickNameState createState() => _SignUpNickNameState();
+class SignUpNickNameScreen extends StatefulWidget {
+  static const String id = 'sign_up_nickname_screen';
+  _SignUpNickNameStateScreen createState() => _SignUpNickNameStateScreen();
 }
 
-class _SignUpNickNameState extends State<SignUpNickName> {
+class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
   final _nameTextEditController = TextEditingController();
 
   bool _isValid() {
@@ -14,31 +16,32 @@ class _SignUpNickNameState extends State<SignUpNickName> {
   }
 
   void _nextScreen() {
-    Navigator.pushNamed(context, '/signup_moreinfo');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignUpMoreInfoScreen(),
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: '이전 페이지',
+            color: Colors.black,
+            onPressed: () {},
+          ),
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 24),
-                ),
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WelcomeScreen(),
-                      ),
-                    );
-                  },
-                ),
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(36, 60, 0, 0),
                 )
