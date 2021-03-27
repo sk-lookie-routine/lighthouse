@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/utilities/colors.dart';
+import 'package:lighthouse/utilities/fonts.dart';
 
 class SignUpButton extends StatelessWidget {
   final String text;
   final Function onPressed;
-  final Color backgroundColor;
 
   const SignUpButton({
     Key key,
     @required this.text,
     @required this.onPressed,
-    @required this.backgroundColor,
   }) : super(key: key);
 
   Widget build(BuildContext context) {
@@ -18,16 +18,21 @@ class SignUpButton extends StatelessWidget {
       onPressed: onPressed, //관심키워드 선택 페이지 이동
       child: Text(
         text,
-        style: TextStyle(
-          color: const Color(0xffffffff),
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+        style: const TextStyle(
+            color:  Colors.white,
+            fontWeight: FontWeight.w400,
+            fontFamily: notoSans,
+            fontStyle:  FontStyle.normal,
+            fontSize: 20.0
         ),
       ),
       style: TextButton.styleFrom(
-          backgroundColor: backgroundColor,
+          backgroundColor: primaryColor,
+          padding: EdgeInsets.symmetric(
+            vertical: 11,
+          ),
           shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0))),
+              borderRadius: new BorderRadius.circular(26.0))),
     );
   }
 }
