@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
-class SignUpNickNameScreen extends StatefulWidget {
-  static const String id = 'sign_up_nickname_screen';
-  _SignUpNickNameStateScreen createState() => _SignUpNickNameStateScreen();
+class SignUpNickName extends StatefulWidget {
+  _SignUpNickNameState createState() => _SignUpNickNameState();
 }
 
-class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
+class _SignUpNickNameState extends State<SignUpNickName> {
   final _nameTextEditController = TextEditingController();
 
   bool _isValid() {
@@ -15,12 +14,23 @@ class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
   }
 
   void _nextScreen() {
-    Navigator.pushNamed(context, '/signup_moreinfo');
+    //컴포넌트 교체
   }
 
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: '이전 페이지',
+            color: Colors.black,
+            onPressed: () {
+            },
+          ),
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
