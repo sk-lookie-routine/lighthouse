@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lighthouse/screens/signup/sign_up_nickname.dart';
+import 'package:lighthouse/screens/signup/sign_up_nickname_screen.dart';
 
-class SignUpMoreInfo extends StatefulWidget {
-  _SignUpMoreInfoState createState() => _SignUpMoreInfoState();
+class SignUpMoreInfoScreen extends StatefulWidget {
+  static const String id = 'sign_up_moreinfo_screen';
+  _SignUpMoreInfoScreenState createState() => _SignUpMoreInfoScreenState();
 }
 
-class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
+class _SignUpMoreInfoScreenState extends State<SignUpMoreInfoScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -23,7 +24,7 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignUpNickName(),
+                      builder: (context) => SignUpNickNameScreen(),
                     ),
                   );
                 },

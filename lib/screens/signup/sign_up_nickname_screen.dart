@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
-class SignUpNickName extends StatefulWidget {
-  _SignUpNickNameState createState() => _SignUpNickNameState();
+class SignUpNickNameScreen extends StatefulWidget {
+  static const String id = 'sign_up_nickname_screen';
+  _SignUpNickNameStateScreen createState() => _SignUpNickNameStateScreen();
 }
 
-class _SignUpNickNameState extends State<SignUpNickName> {
+class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
   final _nameTextEditController = TextEditingController();
 
   bool _isValid() {
