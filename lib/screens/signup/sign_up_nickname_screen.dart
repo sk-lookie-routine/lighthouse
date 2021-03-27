@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
-class SignUp extends StatefulWidget {
-  _SignUpState createState() => _SignUpState();
+class SignUpNickName extends StatefulWidget {
+  _SignUpNickNameState createState() => _SignUpNickNameState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpNickNameState extends State<SignUpNickName> {
   final _nameTextEditController = TextEditingController();
 
   bool _isValid() {
@@ -14,8 +14,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   void _nextScreen() {
-    //같은 페이지에서 style만 고치기
-    print('바꾸기');
+    Navigator.pushNamed(context, '/signup_moreinfo');
   }
 
   Widget build(BuildContext context) {
