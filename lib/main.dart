@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: App(),
+      initialRoute: '/',
       routes: routes,
     );
   }

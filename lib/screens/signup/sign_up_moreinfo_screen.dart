@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lighthouse/screens/signup/sign_up_nickname.dart';
+import 'package:lighthouse/screens/signup/sign_up_nickname_screen.dart';
 
 class SignUpMoreInfo extends StatefulWidget {
   _SignUpMoreInfoState createState() => _SignUpMoreInfoState();
