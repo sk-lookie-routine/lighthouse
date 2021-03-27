@@ -12,7 +12,7 @@ class _BodyState extends State<Body> {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            //빅 타이틀
+            //빅 타이틀 -> 서영님
             //서브 타이틀
             //사이에 내용
             //보라버튼

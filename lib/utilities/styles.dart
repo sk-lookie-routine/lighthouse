@@ -7,7 +7,7 @@ const kTempTextStyle = TextStyle(
 );
  */
 
-const signUpButtonStyle = TextStyle(
+const signUpButtonTextStyle = TextStyle(
   color: const Color(0xffffffff),
   fontWeight: FontWeight.bold,
   fontSize: 18,
