@@ -3,12 +3,11 @@ import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/sign_up_moreinfo_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
-class SignUpNickNameScreen extends StatefulWidget {
-  static const String id = 'sign_up_nickname_screen';
-  _SignUpNickNameStateScreen createState() => _SignUpNickNameStateScreen();
+class SignUpNickName extends StatefulWidget {
+  _SignUpNickNameState createState() => _SignUpNickNameState();
 }
 
-class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
+class _SignUpNickNameState extends State<SignUpNickName> {
   final _nameTextEditController = TextEditingController();
 
   bool _isValid() {
@@ -16,12 +15,7 @@ class _SignUpNickNameStateScreen extends State<SignUpNickNameScreen> {
   }
 
   void _nextScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SignUpMoreInfoScreen(),
-      ),
-    );
+    //컴포넌트 교체
   }
 
   Widget build(BuildContext context) {
