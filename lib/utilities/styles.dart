@@ -5,3 +5,5 @@ const signUpTitleStyle = TextStyle(
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
     fontSize: 24.0);
+
+const moreInfoSubText = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);

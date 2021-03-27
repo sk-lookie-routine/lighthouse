@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
+import 'package:lighthouse/screens/signup/components/sign_up_moreinfo.dart';
 import 'package:lighthouse/utilities/constants.dart';
 import 'package:lighthouse/utilities/styles.dart';
 
@@ -38,7 +39,7 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    //컴포넌트 여기에 추가
+                    SignUpMoreInfo(),
                   ],
                 ),
               ),

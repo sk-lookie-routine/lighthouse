@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/screens/signup/sign_up_moreinfo_screen.dart';
+import 'package:lighthouse/screens/signup/components/sign_up_moreinfo.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
 class SignUpNickName extends StatefulWidget {

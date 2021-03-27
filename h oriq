@@ -1,0 +1,79 @@
+[33mcommit 85dac5c676ff55fc756298af3e368f236f52a763[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: 5b6943d 8d296f8
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 22:11:49 2021 +0900
+
+    signup_moreinfo => create keyword button
+
+[33mcommit 5b6943d8b47c35443b8b23524a885406e4e382a7[m
+Merge: bfc6a66 b6e96b2
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 18:45:24 2021 +0900
+
+    update signup  screen
+
+[33mcommit 8d296f893a50c4294ade83d2adc7cfc048147121[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Sat Mar 27 18:44:29 2021 +0900
+
+    refactor
+
+[33mcommit e926dae7078cc3f2df19f6c6895bcc08c36814c6[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Sat Mar 27 18:43:03 2021 +0900
+
+    refactor sign up
+
+[33mcommit bfc6a664752f3a4d40fdd057a82db94c098e1f8f[m
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 18:07:47 2021 +0900
+
+    changes
+
+[33mcommit b6e96b2f952dd220b526a52fe7446c4c98ba1da5[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Sat Mar 27 18:05:50 2021 +0900
+
+    update routes
+
+[33mcommit 2e3b9707a93498f95fa237c467b1d6b68eeaf42f[m
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 17:53:17 2021 +0900
+
+    update sign up screen
+
+[33mcommit 9671f3156334fcdbe9b813b6b07c35808731e2cf[m
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 17:17:36 2021 +0900
+
+    create components folder
+
+[33mcommit a32a67ce28c567d14dfb4a2cc4816f4a2ae29431[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: leeseooo <leeseoooo@naver.com>
+Date:   Sat Mar 27 16:50:53 2021 +0900
+
+    signup page
+
+[33mcommit 7492ef473466ab7c1f95cfd0d0e7fdf8b8bc5a53[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Sat Mar 27 16:09:03 2021 +0900
+
+    style 파일 추가
+
+[33mcommit d5550d889ecb6af99373d1c61f2cfe3d538b17e4[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Sat Mar 27 16:03:45 2021 +0900
+
+    welcome screen 레이아웃 + sign up screen app bar 까지만
+
+[33mcommit ac4b6a30125751789bd78c60b4fc39dc0afe9ba7[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Mon Mar 22 17:26:06 2021 +0900
+
+    sdk verision 16->19 수정
+
+[33mcommit 8483b3eef30af1b51c5f9c852e7ff35eae8f842d[m
+Author: Ujaa <40076944+Ujaa@users.noreply.github.com>
+Date:   Mon Mar 22 17:21:52 2021 +0900
+
+    Initial commit
