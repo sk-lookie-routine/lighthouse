@@ -123,17 +123,6 @@ class _SignUpNickNameState extends State<SignUpNickName> {
                       fontSize: 12.0),
                   textAlign: TextAlign.right),
             ),
-            Container(
-              width: 324,
-              padding: EdgeInsets.fromLTRB(50, 10, 0, 0),
-              child: SignUpButton(
-                text: '설정 완료',
-                onPressed: _isValid() ? _nextScreen : null,
-                backgroundColor: _nameTextEditController.text.length >= 1
-                    ? const Color(0xff5230ce)
-                    : const Color(0xffd9d9d9),
-              ),
-            ),
           ],
         ),
       ),
