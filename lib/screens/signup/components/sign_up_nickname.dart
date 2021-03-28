@@ -64,16 +64,18 @@ class _SignUpNickNameState extends State<SignUpNickName> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SignUpTitle(
-                title:"닉네임을\n설정해 주세요.",
-                subTitle:"닉네임은 바꿀 수 없으니 신중히 정해주세요!",
-            ),
             Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Form(
-                  key: _formKey,
-                  child: UserIdInput(),
+              children: [
+                SignUpTitle(
+                    title:"닉네임을\n설정해 주세요.",
+                    subTitle:"닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: padding),
+                  child: Form(
+                    key: _formKey,
+                    child: UserIdInput(),
+                  ),
                 ),
               ],
             ),

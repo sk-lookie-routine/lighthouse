@@ -13,5 +13,5 @@ double getHeightByScreenSize(double screenHeight, double height){
 }
 
 //signUp 스크린 padding 값
-final double padding = 36;  //화면 기본 padding 값
-final double buttonPadding = 18;  //버튼 padding 값
+const double padding = 36;  //화면 기본 padding 값
+const double buttonPadding = 18;  //버튼 padding 값
