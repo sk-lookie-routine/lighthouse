@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
+import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
 import 'package:lighthouse/utilities/constants.dart';
 
 class NickName extends StatefulWidget {
   _NickNameState createState() => _NickNameState();
+}
+
+void showAlertDialog(BuildContext context) async {
+  String result = await showDialog(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return WarningAlertDialog();
+    },
+  );
 }
 
 class _NickNameState extends State<NickName> {
@@ -83,7 +94,9 @@ class _NickNameState extends State<NickName> {
                 padding: const EdgeInsets.only(top: 15, bottom: 33),
                 child: SignUpButton(
                   text: "저장 후 시작하기",
-                  onPressed: () {},
+                  onPressed: () {
+                    showAlertDialog(context);
+                  },
                 ),
               ),
             ),

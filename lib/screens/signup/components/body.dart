@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/finish.dart';
+import 'package:lighthouse/screens/signup/components/interest_keyword.dart';
 import 'package:lighthouse/screens/signup/components/sign_up_moreinfo.dart';
 import 'package:lighthouse/screens/signup/components/nickname.dart';
 import 'package:lighthouse/utilities/colors.dart';
