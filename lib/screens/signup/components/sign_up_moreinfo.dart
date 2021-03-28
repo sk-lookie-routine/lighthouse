@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/keyword_button.dart';
 import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/screens/signup/components/sign_up_nickname.dart';
+import 'package:lighthouse/screens/signup/components/nickname.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/styles.dart';
 
