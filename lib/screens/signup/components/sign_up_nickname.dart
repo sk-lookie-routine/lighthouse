@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
-import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 import 'package:lighthouse/utilities/constants.dart';
 
 
-class SignUpNickName extends StatefulWidget {
-  _SignUpNickNameState createState() => _SignUpNickNameState();
+class NickName extends StatefulWidget {
+  _NickNameState createState() => _NickNameState();
 }
 
-class _SignUpNickNameState extends State<SignUpNickName> {
+class _NickNameState extends State<NickName> {
   String _userNickName = "";
   final _controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
