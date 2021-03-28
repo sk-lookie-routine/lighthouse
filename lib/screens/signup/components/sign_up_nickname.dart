@@ -1,117 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/screens/signup/components/sign_up_moreinfo.dart';
+import 'package:lighthouse/screens/signup/components/signup_title.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
+import 'package:lighthouse/utilities/constants.dart';
 
 class SignUpNickName extends StatefulWidget {
   _SignUpNickNameState createState() => _SignUpNickNameState();
 }
 
 class _SignUpNickNameState extends State<SignUpNickName> {
-  final _nameTextEditController = TextEditingController();
+  String _userNickName = "";
+  final _controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
-  bool _isValid() {
-    return (_nameTextEditController.text.length >= 1);
+  void initState() {
+    _controller.addListener(() {
+      if (_formKey.currentState.validate()) {
+        _formKey.currentState.save();
+      }
+    });
+    super.initState();
   }
 
-  void _nextScreen() {
-    //컴포넌트 교체
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  String validateText(String value) {
+    if (!(value.length > 5) && value.isNotEmpty) {
+      return "Password should contain more than 5 characters";
+    }
+    return null;
+  }
+
+  Widget UserIdInput() {
+    return TextFormField(
+      autofocus: true,
+      maxLength: 5,
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: '닉네임 입력',
+      ),
+      textInputAction: TextInputAction.next,
+      validator: (name) {
+        if (name.isEmpty) {
+          return '아이디를 입력하세요.';
+        } else if (name.length > 5) {
+          return '5글자 이내로 설정해주세요.';
+        }
+        return null;
+      },
+      onSaved: (name) => _userNickName = name,
+    );
   }
 
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            tooltip: '이전 페이지',
-            color: Colors.black,
-            onPressed: () {},
-          ),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    Size size = MediaQuery.of(context).size;
+    return SizedBox.expand(
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            SignUpTitle(
+              title: "닉네임을\n설정해 주세요.",
+              subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+            ),
             Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(36, 60, 0, 0),
-                )
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Form(
+                  key: _formKey,
+                  child: UserIdInput(),
+                ),
               ],
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(36, 70, 0, 0),
-              child: Text("닉네임을\n설정해 주세요.",
-                  style: const TextStyle(
-                      color: const Color(0xff1b1b1b),
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 24.0),
-                  textAlign: TextAlign.left),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(36, 10, 0, 0),
-              child: Text(
-                '원활한 의사소통을 위해 실명 가입을 추천합니다.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: const Color(0xff999999),
-                  fontWeight: FontWeight.bold,
+            SizedBox(
+              width: size.width * 1 - buttonPadding * 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 33),
+                child: SignUpButton(
+                  text: "저장 후 시작하기",
+                  onPressed: () {},
                 ),
               ),
             ),
-            Container(
-                alignment: Alignment(0.0, 0.0),
-                padding: EdgeInsets.only(top: 44),
-                child: Container(
-                  width: 320,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    border:
-                        Border.all(color: const Color(0xff707070), width: 1),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 16),
-                    child: TextField(
-                        controller: _nameTextEditController,
-                        onChanged: (text) {
-                          setState(() {});
-                        },
-                        maxLength: 5,
-                        decoration: InputDecoration(
-                          hintText: "닉네임 입력",
-                          hintStyle: const TextStyle(
-                              color: const Color(0xff999999),
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 16.0),
-                          counterText: '', // counter text를 비움으로 설정
-                        ),
-                        style: const TextStyle(
-                            color: const Color(0xff1b1b1b),
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 20.0),
-                        textAlign: TextAlign.left),
-                  ),
-                )),
-            Container(
-              padding: EdgeInsets.fromLTRB(290, 5, 0, 0),
-              child: Text(
-                  (_nameTextEditController.text.length).toString() + "/최대 5자",
-                  style: const TextStyle(
-                      color: const Color(0xff515151),
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 12.0),
-                  textAlign: TextAlign.right),
-            ),
-          ],
-        ),
-      ),
+          ]),
     );
   }
 }
