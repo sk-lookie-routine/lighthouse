@@ -22,6 +22,7 @@ const signUpTextFieldTextStyle = TextStyle(
     fontFamily: notoSans,
     fontStyle: FontStyle.normal,
     fontSize: 16.0);
+
 const moreInfoSubText = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
 
 const signUpMidTitleTextStyle = TextStyle(

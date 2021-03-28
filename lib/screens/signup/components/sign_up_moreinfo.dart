@@ -28,7 +28,7 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
     List<String> gradeList = ["1학년", "2학년", "3학년"];
     String selectedsexList;
     double width;
-    return SizedBox.expand(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,78 +37,78 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
             title: "추가 정보를\n입력해 주세요.",
           ),
           SizedBox(
-            child: ListView(
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(36, 0, 0, 12),
-                  child: Text(
+            height: getHeightByScreenSize(size.height, 310),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: ListView(
+                children: [
+                  Text(
                     '성별',
                     style: moreInfoSubText,
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SingleChoice(
-                      sexList,
-                      100,
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedsexList = selectedList;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 22),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(36, 0, 0, 12),
-                  child: Text(
+                  SingleChoice(
+                    sexList,
+                    EdgeInsets.fromLTRB(54, 11, 54, 11),
+                    onSelectionChanged: (selectedList) {
+                      setState(() {
+                        selectedsexList = selectedList;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 22),
+                  ),
+                  Text(
                     '학교',
                     style: moreInfoSubText,
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SingleChoice(
-                      schoolList,
-                      55,
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedsexList = selectedList;
-                        });
-                      },
+                  SingleChoice(
+                    schoolList,
+                    EdgeInsets.fromLTRB(19, 8, 19, 8),
+                    onSelectionChanged: (selectedList) {
+                      setState(() {
+                        selectedsexList = selectedList;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 22),
+                  ),
+                  Text(
+                    '학과',
+                    style: moreInfoSubText,
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(36, 0, 36, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: '학과 입력',
+                      ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 22),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(36, 0, 0, 12),
-                  child: Text(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 22),
+                  ),
+                  Text(
                     '학년',
                     style: moreInfoSubText,
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SingleChoice(
-                      gradeList,
-                      55,
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedsexList = selectedList;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                  SingleChoice(
+                    gradeList,
+                    EdgeInsets.fromLTRB(19, 8, 19, 8),
+                    onSelectionChanged: (selectedList) {
+                      setState(() {
+                        selectedsexList = selectedList;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 100),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
