@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 
 const signUpTitleStyle = TextStyle(
@@ -23,4 +24,20 @@ const signUpTextFieldTextStyle = TextStyle(
     fontFamily: notoSans,
     fontStyle:  FontStyle.normal,
     fontSize: 16.0
+);
+
+const signUpMidTitleTextStyle = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w700,
+    fontFamily: notoSans,
+    fontStyle:  FontStyle.normal,
+    fontSize: 14.0
+);
+
+const signUpGradeTextStyle = TextStyle(
+    color: primaryColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: notoSans,
+    fontStyle:  FontStyle.normal,
+    fontSize: 14.0
 );
