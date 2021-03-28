@@ -20,7 +20,6 @@ class _SingleChoiceState extends State<SingleChoice> {
 
     widget.myList.forEach((item) {
       choices.add(ChoiceChip(
-<<<<<<< HEAD
         backgroundColor: Colors.white,
         side: BorderSide(color: const Color(0xffd9d9d9)),
         padding: widget.mypadding,
@@ -30,21 +29,6 @@ class _SingleChoiceState extends State<SingleChoice> {
             color: Colors.black,
           ),
           textAlign: TextAlign.center,
-=======
-        padding: EdgeInsets.symmetric(vertical: 8),
-        backgroundColor: Colors.white,
-        side: BorderSide(color: const Color(0xffd9d9d9)),
-        label: Container(
-          width: widget.chipwidth,
-          height: 26,
-          alignment: Alignment.center,
-          child: Text(
-            item,
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
->>>>>>> d88374930662630da723583211e1d90c622ca69d
         ),
         selected: selectedChoice == item,
         onSelected: (selected) {
