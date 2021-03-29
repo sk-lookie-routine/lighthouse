@@ -15,6 +15,9 @@ class SignUpMoreInfo extends StatefulWidget {
 
 class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
   bool _selected = false;
+  bool isUniversity = false;
+  bool isHighSchool = false;
+  bool isOthers = false;
   void onSelected(bool selected) {
     setState(() {
       _selected = !_selected;
@@ -26,8 +29,10 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
     List<String> sexList = ["여자", "남자"];
     List<String> schoolList = ["고등학교", "대학교", "그 외"];
     List<String> gradeList = ["1학년", "2학년", "3학년"];
-    String selectedsexList;
+    List<String> otherList = ["검정고시", "재수/n수", "반수/편입"];
+    String selectedMyList;
     double width;
+
     return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +56,7 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
                     EdgeInsets.fromLTRB(54, 11, 54, 11),
                     onSelectionChanged: (selectedList) {
                       setState(() {
-                        selectedsexList = selectedList;
+                        selectedMyList = selectedList;
                       });
                     },
                   ),
@@ -67,46 +72,69 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
                     EdgeInsets.fromLTRB(19, 8, 19, 8),
                     onSelectionChanged: (selectedList) {
                       setState(() {
-                        selectedsexList = selectedList;
+                        selectedMyList = selectedList;
+                        if (selectedMyList == schoolList[1].toString()) {
+                          isUniversity = true;
+                          isHighSchool = false;
+                          isOthers = false;
+                        } else if (selectedMyList == schoolList[0].toString()) {
+                          isHighSchool = true;
+                          isUniversity = false;
+                          isOthers = false;
+                        } else {
+                          isUniversity = false;
+                          isHighSchool = false;
+                          isOthers = true;
+                        }
                       });
                     },
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 22),
                   ),
-                  Text(
-                    '학과',
-                    style: moreInfoSubText,
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(36, 0, 36, 0),
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: '학과 입력',
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 22),
-                  ),
-                  Text(
-                    '학년',
-                    style: moreInfoSubText,
-                  ),
-                  SingleChoice(
-                    gradeList,
-                    EdgeInsets.fromLTRB(19, 8, 19, 8),
-                    onSelectionChanged: (selectedList) {
-                      setState(() {
-                        selectedsexList = selectedList;
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 100),
-                  ),
+                  isUniversity
+                      ? _majorInfo()
+                      : (isHighSchool
+                          ? (Wrap(
+                              children: [
+                                Text(
+                                  '학년',
+                                  style: moreInfoSubText,
+                                ),
+                                SingleChoice(
+                                  gradeList,
+                                  EdgeInsets.fromLTRB(28, 8, 28, 8),
+                                  onSelectionChanged: (selectedList) {
+                                    setState(() {
+                                      selectedMyList = selectedList;
+                                    });
+                                  },
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 100),
+                                ),
+                              ],
+                            ))
+                          : (Wrap(
+                              children: [
+                                Text(
+                                  '학년',
+                                  style: moreInfoSubText,
+                                ),
+                                SingleChoice(
+                                  otherList,
+                                  EdgeInsets.fromLTRB(19, 8, 19, 8),
+                                  onSelectionChanged: (selectedList) {
+                                    setState(() {
+                                      selectedMyList = selectedList;
+                                    });
+                                  },
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 100),
+                                ),
+                              ],
+                            )))
                 ],
               ),
             ),
@@ -125,4 +153,29 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
       ),
     );
   }
+}
+
+Widget _majorInfo() {
+  return Wrap(
+    children: [
+      Text(
+        '학과',
+        style: moreInfoSubText,
+      ),
+      Container(
+        height: 48,
+        child: TextFormField(
+          textAlignVertical: TextAlignVertical.center,
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: '학과 입력',
+          ),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(bottom: 250),
+      ),
+    ],
+  );
 }
