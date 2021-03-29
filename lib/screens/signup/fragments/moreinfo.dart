@@ -9,11 +9,11 @@ import 'package:lighthouse/utilities/styles.dart';
 
 import '../components/single_choice.dart';
 
-class SignUpMoreInfo extends StatefulWidget {
-  _SignUpMoreInfoState createState() => _SignUpMoreInfoState();
+class MoreInfo extends StatefulWidget {
+  _MoreInfoState createState() => _MoreInfoState();
 }
 
-class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
+class _MoreInfoState extends State<MoreInfo> {
   bool _selected = false;
   bool isUniversity = false;
   bool isHighSchool = false;
