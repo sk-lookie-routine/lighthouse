@@ -44,111 +44,49 @@ class _InterestKeywordState extends State<InterestKeyword> {
                   padding: const EdgeInsets.symmetric(horizontal: 31),
                   child: SizedBox(
                     height: getHeightByScreenSize(size.height, 271),
-                    child: Container(
-                      color: Colors.yellow,
-                      child: ListView(
-                        children: [
-                          Text(
-                            '학업',
-                            style: moreInfoSubText,
-                          ),
-                          Container(
-                            color: Colors.red,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ChoiceChip(
-                                  backgroundColor: Colors.white,
-                                  side: BorderSide(
-                                      color: const Color(0xffd9d9d9)),
-                                  label: Container(
-                                    width: 90,
-                                    height: 26,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "네가르자",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  selected: true,
-                                ),
-                                ChoiceChip(
-                                  backgroundColor: Colors.white,
-                                  side: BorderSide(
-                                      color: const Color(0xffd9d9d9)),
-                                  label: Container(
-                                    width: 90,
-                                    height: 26,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "네가르자",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  selected: true,
-                                ),
-                                ChoiceChip(
-                                  backgroundColor: Colors.white,
-                                  side: BorderSide(
-                                      color: const Color(0xffd9d9d9)),
-                                  label: Container(
-                                    width: 30,
-                                    height: 26,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "네가르자",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  selected: true,
-                                ),
-                              ],
+                    child: ListView(
+                      children: [
+                        Text(
+                          '학업',
+                          style: moreInfoSubText,
+                        ),
+                        Text(
+                          '생활관리',
+                          style: moreInfoSubText,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SingleChoice(
+                              _LIFE_MANAGE,
+                              null,
+                              onSelectionChanged: (selectedList) {
+                                setState(() {
+                                  _selectedList = selectedList;
+                                });
+                              },
                             ),
-                          ),
-                          Text(
-                            '생활관리',
-                            style: moreInfoSubText,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChoice(
-                                _LIFE_MANAGE,
-                                null,
-                                onSelectionChanged: (selectedList) {
-                                  setState(() {
-                                    _selectedList = selectedList;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                          Text(
-                            '학업',
-                            style: moreInfoSubText,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChoice(
-                                _MAJOR,
-                                null,
-                                onSelectionChanged: (selectedList) {
-                                  setState(() {
-                                    _selectedList = selectedList;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                        Text(
+                          '학업',
+                          style: moreInfoSubText,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SingleChoice(
+                              _MAJOR,
+                              null,
+                              onSelectionChanged: (selectedList) {
+                                setState(() {
+                                  _selectedList = selectedList;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),

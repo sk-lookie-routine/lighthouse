@@ -20,7 +20,7 @@ class _BodyState extends State<Body> {
     return Container(
       height: size.height,
       width: double.infinity,
-      child: SignUpMoreInfo(),
+      child: NickName(),
     );
   }
 }

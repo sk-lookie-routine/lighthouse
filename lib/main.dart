@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: notoSans,
         primaryColor: primaryColor,
         scaffoldBackgroundColor: Colors.white,
+        errorColor: errorColor,
       ),
       home: SignUpScreen(),
     );

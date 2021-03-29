@@ -15,7 +15,7 @@ class SignUpButton extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onPressed, //관심키워드 선택 페이지 이동
+      onPressed: onPressed,
       child: Text(
         text,
         style: const TextStyle(
@@ -32,7 +32,9 @@ class SignUpButton extends StatelessWidget {
             vertical: 11,
           ),
           shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(26.0))),
+              borderRadius: new BorderRadius.circular(26.0),
+          ),
+      ),
     );
   }
 }

@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
-import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
+import 'package:lighthouse/services/show_alert_dialog.dart';
+import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
 
 class NickName extends StatefulWidget {
   _NickNameState createState() => _NickNameState();
 }
 
-void showAlertDialog(BuildContext context) async {
-  String result = await showDialog(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return WarningAlertDialog();
-    },
-  );
-}
-
 class _NickNameState extends State<NickName> {
   String _userNickName = "";
-  final _controller = TextEditingController();
+  bool _isNotValid = false;
+  final _userNickNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void initState() {
-    _controller.addListener(() {
-      if (_formKey.currentState.validate()) {
-        _formKey.currentState.save();
-      }
+    _userNickNameController.addListener(() {
+      setState(() {});
     });
     super.initState();
   }
 
   void dispose() {
-    _controller.dispose();
+    _userNickNameController.dispose();
     super.dispose();
   }
 
@@ -44,25 +34,39 @@ class _NickNameState extends State<NickName> {
     return null;
   }
 
-  Widget UserIdInput() {
+  Widget UserNickNameInput() {
     return TextFormField(
+      controller: _userNickNameController,
       autofocus: true,
       maxLength: 5,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         border: OutlineInputBorder(),
         hintText: '닉네임 입력',
+        suffixIcon: _userNickNameController.text.length > 0 ? IconButton(
+            onPressed: () {
+              _userNickNameController.clear();
+            },
+            icon: Icon(
+                Icons.cancel_outlined,
+                color: const Color(0xff707070),
+            ),
+        ) : null
       ),
-      textInputAction: TextInputAction.next,
       validator: (name) {
         if (name.isEmpty) {
-          return '아이디를 입력하세요.';
+          _isNotValid = true;
+          return '닉네임을 입력하세요.';
         } else if (name.length > 5) {
+          _isNotValid = true;
           return '5글자 이내로 설정해주세요.';
         }
+        _isNotValid = false;
         return null;
       },
       onSaved: (name) => _userNickName = name,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 
@@ -83,7 +87,7 @@ class _NickNameState extends State<NickName> {
                   padding: const EdgeInsets.symmetric(horizontal: padding),
                   child: Form(
                     key: _formKey,
-                    child: UserIdInput(),
+                    child: UserNickNameInput(),
                   ),
                 ),
               ],
@@ -95,7 +99,15 @@ class _NickNameState extends State<NickName> {
                 child: SignUpButton(
                   text: "저장 후 시작하기",
                   onPressed: () {
-                    showAlertDialog(context);
+                    if (_formKey.currentState.validate()) {
+                    }
+                    showAlertDialog(
+                      context,
+                      "잠깐!",
+                      "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
+                      (){},
+                      (){},
+                    );
                   },
                 ),
               ),
