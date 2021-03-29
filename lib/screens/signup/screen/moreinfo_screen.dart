@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
-import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
-import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
+import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
 import 'package:lighthouse/utilities/fonts.dart';
@@ -113,7 +112,13 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
               child: SignUpButton(
                 text: "저장 후 시작하기",
                 onPressed: () {
-                  return WarningAlertDialog();
+                  return showAlertDialog(
+                    context,
+                    "주의",
+                    "추가정보를 모두 입력하지 않으면\n서비스 이용에 제한이 있습니다.",
+                    () {},
+                    () {},
+                  );
                 },
               ),
             ),

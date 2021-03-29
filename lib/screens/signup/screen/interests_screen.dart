@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
+import 'package:lighthouse/components/warning_alert_dialog.dart';
 import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
-import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
 import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
+import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
 import 'package:lighthouse/utilities/fonts.dart';
@@ -113,9 +114,7 @@ class _InterestsState extends State<Interests> {
               padding: const EdgeInsets.only(top: 15, bottom: 33),
               child: SignUpButton(
                 text: "저장 후 시작하기",
-                onPressed: () {
-                  return WarningAlertDialog();
-                },
+                onPressed: () {},
               ),
             ),
           ),
