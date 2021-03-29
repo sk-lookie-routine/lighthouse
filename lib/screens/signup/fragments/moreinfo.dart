@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
+import 'package:lighthouse/screens/signup/components/single_choice.dart';
 import 'package:lighthouse/utilities/constants.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/styles.dart';
-
-import '../components/single_choice.dart';
 
 class MoreInfo extends StatefulWidget {
   _MoreInfoState createState() => _MoreInfoState();

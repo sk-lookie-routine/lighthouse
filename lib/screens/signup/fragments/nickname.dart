@@ -15,6 +15,32 @@ class _NickNameState extends State<NickName> {
   final _userNickNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  Future<Widget> getSuffixIcon() async {
+    await Future.delayed(Duration(milliseconds: 20));
+    final form = _formKey.currentState;
+    print(form);
+    if(form.validate()){
+      if(_userNickNameController.text.length > 0) {
+        return IconButton(
+          onPressed: () {
+            _userNickNameController.clear();
+          },
+          icon: Icon(
+            Icons.cancel_outlined,
+            color: const Color(0xff707070),
+          ),
+        );
+      }else{
+        return null;
+      }
+    }else{
+      return Icon(
+        Icons.error,
+        color: errorColor,
+      );
+    }
+  }
+
   void initState() {
     _userNickNameController.addListener(() {
       setState(() {});
@@ -27,12 +53,6 @@ class _NickNameState extends State<NickName> {
     super.dispose();
   }
 
-  String validateText(String value) {
-    if (!(value.length > 5) && value.isNotEmpty) {
-      return "Password should contain more than 5 characters";
-    }
-    return null;
-  }
 
   Widget UserNickNameInput() {
     return TextFormField(
@@ -44,15 +64,28 @@ class _NickNameState extends State<NickName> {
         contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         border: OutlineInputBorder(),
         hintText: '닉네임 입력',
-        suffixIcon: _userNickNameController.text.length > 0 ? IconButton(
-            onPressed: () {
-              _userNickNameController.clear();
-            },
-            icon: Icon(
-                Icons.cancel_outlined,
-                color: const Color(0xff707070),
-            ),
-        ) : null
+        suffixIcon: FutureBuilder(
+            future: getSuffixIcon(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //data를 아직 받아 오지 못했을때
+              if (snapshot.hasData == false) {
+                return CircularProgressIndicator();
+              }
+              //error가 발생하게 될 경우
+              else if (snapshot.hasError) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Error',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                );
+              }
+              // 데이터를 정상적으로 받아오게 되면
+              else {
+                return snapshot.data;
+              }
+            }),
       ),
       validator: (name) {
         if (name.isEmpty) {
