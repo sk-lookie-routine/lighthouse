@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/screens/signup/components/nickname.dart';
+import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
+import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
+import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
+import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/styles.dart';
 
-import 'single_choice.dart';
+import '../components/single_choice.dart';
 
 class SignUpMoreInfo extends StatefulWidget {
   _SignUpMoreInfoState createState() => _SignUpMoreInfoState();
@@ -95,46 +98,10 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
                   isUniversity
                       ? _majorInfo()
                       : (isHighSchool
-                          ? (Wrap(
-                              children: [
-                                Text(
-                                  '학년',
-                                  style: moreInfoSubText,
-                                ),
-                                SingleChoice(
-                                  gradeList,
-                                  EdgeInsets.fromLTRB(28, 8, 28, 8),
-                                  onSelectionChanged: (selectedList) {
-                                    setState(() {
-                                      selectedMyList = selectedList;
-                                    });
-                                  },
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 100),
-                                ),
-                              ],
-                            ))
-                          : (Wrap(
-                              children: [
-                                Text(
-                                  '학년',
-                                  style: moreInfoSubText,
-                                ),
-                                SingleChoice(
-                                  otherList,
-                                  EdgeInsets.fromLTRB(19, 8, 19, 8),
-                                  onSelectionChanged: (selectedList) {
-                                    setState(() {
-                                      selectedMyList = selectedList;
-                                    });
-                                  },
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 100),
-                                ),
-                              ],
-                            )))
+                          ? KeyWordInfo(
+                              gradeList, EdgeInsets.fromLTRB(28, 8, 28, 8))
+                          : KeyWordInfo(
+                              otherList, EdgeInsets.fromLTRB(19, 8, 19, 8)))
                 ],
               ),
             ),
@@ -145,7 +112,9 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
               padding: const EdgeInsets.only(top: 15, bottom: 33),
               child: SignUpButton(
                 text: "저장 후 시작하기",
-                onPressed: () {},
+                onPressed: () {
+                  return WarningAlertDialog();
+                },
               ),
             ),
           ),
@@ -162,17 +131,21 @@ Widget _majorInfo() {
         '학과',
         style: moreInfoSubText,
       ),
+      Padding(padding: EdgeInsets.only(bottom: 30)), //패딩 9 주면 너무 가까움..
       Container(
-        height: 48,
-        child: TextFormField(
-          textAlignVertical: TextAlignVertical.center,
-          keyboardType: TextInputType.text,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: '학과 입력',
-          ),
-        ),
-      ),
+          height: 48,
+          child: TextField(
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: '학과 입력',
+                prefixText: ' ',
+                contentPadding: EdgeInsets.fromLTRB(16, 12, 0, 12),
+                hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontFamily: notoSans,
+                  color: const Color(0xff999999),
+                )),
+          )),
       Padding(
         padding: EdgeInsets.only(bottom: 250),
       ),
