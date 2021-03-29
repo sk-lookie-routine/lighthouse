@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
-import 'package:lighthouse/screens/signup/components/warning_alert_dialog.dart';
-import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
@@ -113,7 +111,7 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
               child: SignUpButton(
                 text: "저장 후 시작하기",
                 onPressed: () {
-                  return WarningAlertDialog();
+                  //service에서 show alert dialog쓰세요1!
                 },
               ),
             ),
