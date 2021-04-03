@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
+import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
+import 'package:lighthouse/screens/signup/screens/moreinfo_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
 
-class NickName extends StatefulWidget {
-  _NickNameState createState() => _NickNameState();
+class NickNameScreen extends StatefulWidget {
+  _NickNameScreenState createState() => _NickNameScreenState();
 }
 
-class _NickNameState extends State<NickName> {
+class _NickNameScreenState extends State<NickNameScreen> {
   String _userNickName = "";
   bool _isNotValid = false;
   final _userNickNameController = TextEditingController();
@@ -105,47 +107,71 @@ class _NickNameState extends State<NickName> {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox.expand(
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              children: [
-                SignUpTitle(
-                  title: "닉네임을\n설정해 주세요.",
-                  subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          tooltip: '이전 페이지',
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Container(
+        height: size.height,
+        width: double.infinity,
+        child: SizedBox.expand(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: [
+                    SignUpTitle(
+                      title: "닉네임을\n설정해 주세요.",
+                      subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: padding),
+                      child: Form(
+                        key: _formKey,
+                        child: UserNickNameInput(),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: padding),
-                  child: Form(
-                    key: _formKey,
-                    child: UserNickNameInput(),
+                SizedBox(
+                  width: size.width * 1 - buttonPadding * 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 33),
+                    child: SignUpButton(
+                      text: "설정 완료",
+
+                      onPressed: (){
+                        showAlertDialog(
+                            context,
+                            "잠깐!",
+                            "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
+                                (){
+                                  Navigator.pop(context);
+                                },
+                                (){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MoreInfoScreen())
+                                  );
+                                }
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              width: size.width * 1 - buttonPadding * 2,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 33),
-                child: SignUpButton(
-                  text: "저장 후 시작하기",
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                    }
-                    showAlertDialog(
-                      context,
-                      "잠깐!",
-                      "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
-                      (){},
-                      (){},
-                    );
-                  },
-                ),
-              ),
-            ),
-          ]),
+              ]),
+        ),
+      ),
     );
   }
 }

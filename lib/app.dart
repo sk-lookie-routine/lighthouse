@@ -1,11 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
 class App extends StatelessWidget {
-  get logout => null;
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -23,8 +22,8 @@ class App extends StatelessWidget {
               builder: (BuildContext context, AsyncSnapshot<User> snapshot){
                 if(!snapshot.hasData){
                   return WelcomeScreen();
-                }else{  //계정 이미 있음
-                  return Scaffold();
+                }else{  //계정 정보 있음(sign up 과정을 끝냈는지는 알 수 없음)
+                  return NickNameScreen();
                 }
               },
             ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lighthouse/screens/signup/sign_up_screen.dart';
-import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 import 'package:lighthouse/utilities//colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/app.dart';
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         errorColor: errorColor,
       ),
-      home: SignUpScreen(),
+      home: App(),
     );
   }
 }
