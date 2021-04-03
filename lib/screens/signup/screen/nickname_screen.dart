@@ -4,6 +4,7 @@ import 'package:lighthouse/screens/signup/components/signup_title.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
+import 'package:lighthouse/utilities/styles.dart';
 
 class NickName extends StatefulWidget {
   _NickNameState createState() => _NickNameState();
@@ -41,19 +42,20 @@ class _NickNameState extends State<NickName> {
       maxLength: 5,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-        border: OutlineInputBorder(),
-        hintText: '닉네임 입력',
-        suffixIcon: _userNickNameController.text.length > 0 ? IconButton(
-            onPressed: () {
-              _userNickNameController.clear();
-            },
-            icon: Icon(
-                Icons.cancel_outlined,
-                color: const Color(0xff707070),
-            ),
-        ) : null
-      ),
+          contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+          border: OutlineInputBorder(),
+          hintText: '닉네임 입력',
+          suffixIcon: _userNickNameController.text.length > 0
+              ? IconButton(
+                  onPressed: () {
+                    _userNickNameController.clear();
+                  },
+                  icon: Icon(
+                    Icons.cancel_outlined,
+                    color: const Color(0xff707070),
+                  ),
+                )
+              : null),
       validator: (name) {
         if (name.isEmpty) {
           _isNotValid = true;
@@ -82,6 +84,7 @@ class _NickNameState extends State<NickName> {
                 SignUpTitle(
                   title: "닉네임을\n설정해 주세요.",
                   subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+                  myStyle: signUpSubTitleStyle,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: padding),
@@ -99,14 +102,13 @@ class _NickNameState extends State<NickName> {
                 child: SignUpButton(
                   text: "저장 후 시작하기",
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                    }
+                    if (_formKey.currentState.validate()) {}
                     showAlertDialog(
                       context,
                       "잠깐!",
                       "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
-                      (){},
-                      (){},
+                      () {},
+                      () {},
                     );
                   },
                 ),

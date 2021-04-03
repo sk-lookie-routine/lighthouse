@@ -3,26 +3,28 @@ import 'package:lighthouse/utilities/styles.dart';
 
 class SignUpTitle extends StatelessWidget {
   final String title, subTitle;
+  final TextStyle myStyle;
 
   const SignUpTitle({
     Key key,
     @required this.title,
+    @required this.myStyle,
     this.subTitle,
   }) : super(key: key);
 
-  Padding getPadding(){
-    if(subTitle == null){
+  Padding getPadding() {
+    if (subTitle == null) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 60),
       );
-    }else{
+    } else {
       return Padding(
         padding: const EdgeInsets.only(bottom: 44),
         child: SizedBox(
           width: double.infinity,
           child: Text(
             subTitle,
-            style: signUpSubTitleStyle,
+            style: myStyle,
           ),
         ),
       );

@@ -17,7 +17,8 @@ class Finish extends StatelessWidget {
             Column(
               children: [
                 SignUpTitle(
-                  title:"축하해요!\n가입이 완료되었습니다.",
+                  title: "축하해요!\n가입이 완료되었습니다.",
+                  myStyle: signUpSubTitleStyle,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,10 +26,8 @@ class Finish extends StatelessWidget {
                     Container(
                         width: 170,
                         height: 170,
-                        decoration: BoxDecoration(
-                            color: const Color(0xfff1f1f1)
-                        )
-                    ),
+                        decoration:
+                            BoxDecoration(color: const Color(0xfff1f1f1))),
                     Padding(
                       padding: const EdgeInsets.only(top: 23),
                       child: Text.rich(
@@ -55,12 +54,11 @@ class Finish extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 15, bottom: 33),
                 child: SignUpButton(
                   text: "확인",
-                  onPressed: (){},
+                  onPressed: () {},
                 ),
               ),
             ),
-          ]
-      ),
+          ]),
     );
   }
 }

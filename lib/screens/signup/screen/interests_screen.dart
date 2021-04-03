@@ -1,14 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/components/warning_alert_dialog.dart';
-import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
-import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/screens/signup/components/signup_title.dart';
-import 'package:lighthouse/services/show_alert_dialog.dart';
-import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
-import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/styles.dart';
 
 import '../components/single_choice.dart';
@@ -18,24 +12,46 @@ class Interests extends StatefulWidget {
 }
 
 class _InterestsState extends State<Interests> {
-  bool _selected = false;
-  bool isUniversity = false;
-  bool isHighSchool = false;
-  bool isOthers = false;
-  void onSelected(bool selected) {
-    setState(() {
-      _selected = !_selected;
-    });
-  }
-
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<String> sexList = ["여자", "남자"];
-    List<String> schoolList = ["고등학교", "대학교", "그 외"];
-    List<String> gradeList = ["1학년", "2학년", "3학년"];
-    List<String> otherList = ["검정고시", "재수/n수", "반수/편입"];
-    String selectedMyList;
-    double width;
+    List<String> studyList = ["공부방법", "진로고민", "재수/n수"];
+    List<String> lifeList = ["건강관리", "멘탈관리", "학교생활", "생활패턴", "계획관리"];
+    List<String> majorList = ["문과", "이과", "공과", "예체능"];
+    String selectedMyList = "";
+    int _choiceIdx;
+
+    onSelectionChanged(String selectedList) {
+      setState(() {
+        selectedMyList = selectedList;
+      });
+    }
+
+    Widget _buildLifeKeyWords() {
+      return SizedBox(
+        height: getHeightByScreenSize(size.height, 100),
+        child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 2.0,
+            ),
+            itemCount: lifeList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ChoiceChip(
+                side: BorderSide(color: const Color(0xffd9d9d9)),
+                padding: EdgeInsets.fromLTRB(21, 8, 20, 8),
+                label: Text(lifeList[index]),
+                selected: _choiceIdx == index,
+                selectedColor: const Color(0xfff2efff),
+                onSelected: (bool selected) {
+                  setState(() {
+                    _choiceIdx = selected ? index : 0;
+                  });
+                },
+                backgroundColor: Colors.white,
+              );
+            }),
+      );
+    }
 
     return SizedBox(
       child: Column(
@@ -45,67 +61,41 @@ class _InterestsState extends State<Interests> {
           SignUpTitle(
             title: "관심 있는\n키워드를 선택해 주세요.",
             subTitle: "대학생의 경우, 해당 키워드 관련 고민 편지/채팅을 받습니다.",
+            myStyle: signUpSubTitleStyle2,
           ),
-          SizedBox(
-            height: getHeightByScreenSize(size.height, 310),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
-              child: ListView(
-                children: [
-                  Text(
-                    '성별',
-                    style: moreInfoSubText,
-                  ),
-                  SingleChoice(
-                    sexList,
-                    EdgeInsets.fromLTRB(54, 11, 54, 11),
-                    onSelectionChanged: (selectedList) {
-                      setState(() {
-                        selectedMyList = selectedList;
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 22),
-                  ),
-                  Text(
-                    '학교',
-                    style: moreInfoSubText,
-                  ),
-                  SingleChoice(
-                    schoolList,
-                    EdgeInsets.fromLTRB(19, 8, 19, 8),
-                    onSelectionChanged: (selectedList) {
-                      setState(() {
-                        selectedMyList = selectedList;
-                        if (selectedMyList == schoolList[1].toString()) {
-                          isUniversity = true;
-                          isHighSchool = false;
-                          isOthers = false;
-                        } else if (selectedMyList == schoolList[0].toString()) {
-                          isHighSchool = true;
-                          isUniversity = false;
-                          isOthers = false;
-                        } else {
-                          isUniversity = false;
-                          isHighSchool = false;
-                          isOthers = true;
-                        }
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 22),
-                  ),
-                  isUniversity
-                      ? _majorInfo()
-                      : (isHighSchool
-                          ? KeyWordInfo(
-                              gradeList, EdgeInsets.fromLTRB(28, 8, 28, 8))
-                          : KeyWordInfo(
-                              otherList, EdgeInsets.fromLTRB(19, 8, 19, 8)))
-                ],
-              ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '학업',
+                  style: moreInfoSubText,
+                ),
+                SingleChoice(
+                  studyList,
+                  EdgeInsets.fromLTRB(21, 8, 20, 8),
+                  onSelectionChanged: onSelectionChanged,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 22),
+                ),
+                Text(
+                  '생활 관리',
+                  style: moreInfoSubText,
+                ),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                _buildLifeKeyWords(),
+                Padding(
+                  padding: EdgeInsets.only(top: 22),
+                ),
+                Text('전공', style: moreInfoSubText),
+                SingleChoice(
+                  majorList,
+                  EdgeInsets.fromLTRB(13, 8, 14, 8),
+                  onSelectionChanged: onSelectionChanged,
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -122,33 +112,4 @@ class _InterestsState extends State<Interests> {
       ),
     );
   }
-}
-
-Widget _majorInfo() {
-  return Wrap(
-    children: [
-      Text(
-        '학과',
-        style: moreInfoSubText,
-      ),
-      Padding(padding: EdgeInsets.only(bottom: 30)), //패딩 9 주면 너무 가까움..
-      Container(
-          height: 48,
-          child: TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: '학과 입력',
-                prefixText: ' ',
-                contentPadding: EdgeInsets.fromLTRB(16, 12, 0, 12),
-                hintStyle: TextStyle(
-                  fontSize: 16,
-                  fontFamily: notoSans,
-                  color: const Color(0xff999999),
-                )),
-          )),
-      Padding(
-        padding: EdgeInsets.only(bottom: 250),
-      ),
-    ],
-  );
 }

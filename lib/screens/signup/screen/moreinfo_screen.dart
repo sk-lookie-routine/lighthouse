@@ -42,6 +42,7 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
         children: [
           SignUpTitle(
             title: "추가 정보를\n입력해 주세요.",
+            myStyle:signUpSubTitleStyle,
           ),
           SizedBox(
             height: getHeightByScreenSize(size.height, 310),

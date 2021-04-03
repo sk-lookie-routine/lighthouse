@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/components/signup_button.dart';
 import 'package:lighthouse/screens/signup/screen/finish_screen.dart';
-import 'package:lighthouse/screens/signup/components/interest_keyword.dart';
+import 'package:lighthouse/screens/signup/screen/interests_screen.dart';
 import 'package:lighthouse/screens/signup/screen/moreinfo_screen.dart';
 import 'package:lighthouse/screens/signup/screen/nickname_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
@@ -20,7 +20,7 @@ class _BodyState extends State<Body> {
     return Container(
       height: size.height,
       width: double.infinity,
-      child: NickName(),
+      child: Interests(),
     );
   }
 }
