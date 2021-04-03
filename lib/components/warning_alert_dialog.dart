@@ -18,16 +18,24 @@ class WarningAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Center(
-        child: Text(
-            title,
-            style: const TextStyle(
-                color:  Colors.black,
-                fontWeight: FontWeight.w700,
-                fontFamily: notoSans,
-                fontStyle:  FontStyle.normal,
-                fontSize: 16.0
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/images/lighthouse_alert.png",
+              width: 38,
             ),
-            textAlign: TextAlign.left
+            Text(
+                title,
+                style: const TextStyle(
+                    color:  Colors.black,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: notoSans,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
         ),
       ),
       content: Text(

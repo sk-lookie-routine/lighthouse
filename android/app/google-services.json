@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "680966701834-7p7l0dg29771aulorun5sr93g48kt8gh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.routine.lighthouse",
+            "certificate_hash": "222e645115762917694ee4d8765ded3dcfded5cf"
+          }
+        },
+        {
           "client_id": "680966701834-m0230ah356dgo177fh5qkils4lv2eh9u.apps.googleusercontent.com",
           "client_type": 3
         }
