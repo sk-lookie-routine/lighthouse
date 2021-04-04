@@ -9,6 +9,13 @@ const signUpTitleStyle = TextStyle(
     fontStyle: FontStyle.normal,
     fontSize: 24.0);
 
+const letterKeyWordTitleStyle = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontFamily: notoSans,
+    fontStyle: FontStyle.normal,
+    fontSize: 24.0);
+
 const signUpSubTitleStyle = TextStyle(
     color: const Color(0xff999999),
     fontWeight: FontWeight.w400,

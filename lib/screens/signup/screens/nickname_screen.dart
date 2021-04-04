@@ -21,8 +21,8 @@ class _NickNameScreenState extends State<NickNameScreen> {
     await Future.delayed(Duration(milliseconds: 20));
     final form = _formKey.currentState;
     print(form);
-    if(form.validate()){
-      if(_userNickNameController.text.length > 0) {
+    if (form.validate()) {
+      if (_userNickNameController.text.length > 0) {
         return IconButton(
           onPressed: () {
             _userNickNameController.clear();
@@ -32,10 +32,10 @@ class _NickNameScreenState extends State<NickNameScreen> {
             color: const Color(0xff707070),
           ),
         );
-      }else{
+      } else {
         return null;
       }
-    }else{
+    } else {
       return Icon(
         Icons.error,
         color: errorColor,
@@ -54,7 +54,6 @@ class _NickNameScreenState extends State<NickNameScreen> {
     _userNickNameController.dispose();
     super.dispose();
   }
-
 
   Widget UserNickNameInput() {
     return TextFormField(
@@ -133,6 +132,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
                     SignUpTitle(
                       title: "닉네임을\n설정해 주세요.",
                       subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+                      myPadding: EdgeInsets.only(bottom: 44),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: padding),
@@ -149,22 +149,16 @@ class _NickNameScreenState extends State<NickNameScreen> {
                     padding: const EdgeInsets.only(top: 15, bottom: 33),
                     child: SignUpButton(
                       text: "설정 완료",
-
-                      onPressed: (){
-                        showAlertDialog(
-                            context,
-                            "잠깐!",
-                            "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
-                                (){
-                                  Navigator.pop(context);
-                                },
-                                (){
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => MoreInfoScreen())
-                                  );
-                                }
-                        );
+                      onPressed: () {
+                        showAlertDialog(context, "잠깐!",
+                            "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?", () {
+                          Navigator.pop(context);
+                        }, () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MoreInfoScreen()));
+                        });
                       },
                     ),
                   ),

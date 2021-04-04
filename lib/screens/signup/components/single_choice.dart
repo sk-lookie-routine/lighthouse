@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/utilities/colors.dart';
 
 class SingleChoice extends StatefulWidget {
   final List<String> myList;
@@ -14,14 +15,14 @@ class SingleChoice extends StatefulWidget {
 class _SingleChoiceState extends State<SingleChoice> {
   String selectedChoice = "";
 
-  double chipwidth;
   _buildChoiceList() {
     List<Widget> choices = [];
 
     widget.myList.forEach((item) {
       choices.add(ChoiceChip(
         backgroundColor: Colors.white,
-        side: BorderSide(color: const Color(0xffd9d9d9)),
+        side: BorderSide(color: primaryColor),
+        selectedColor: keywordColor,
         padding: widget.mypadding,
         label: Text(
           item,

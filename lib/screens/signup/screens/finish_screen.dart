@@ -34,6 +34,7 @@ class FinishScreen extends StatelessWidget {
                   children: [
                     SignUpTitle(
                       title:"축하해요!\n가입이 완료되었습니다.",
+                      myPadding: EdgeInsets.only(bottom: 60),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -19,6 +19,7 @@ class Finish extends StatelessWidget {
                 SignUpTitle(
                   title: "축하해요!\n가입이 완료되었습니다.",
                   myStyle: signUpSubTitleStyle,
+                  myPadding: EdgeInsets.only(bottom: 60),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

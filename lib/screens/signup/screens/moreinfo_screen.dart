@@ -53,6 +53,7 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
           children: [
             SignUpTitle(
               title: "추가 정보를\n입력해 주세요.",
+              myPadding: EdgeInsets.only(bottom: 60),
             ),
             SizedBox(
               height: getHeightByScreenSize(size.height, 310),
@@ -90,7 +91,8 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
                             isUniversity = true;
                             isHighSchool = false;
                             isOthers = false;
-                          } else if (selectedMyList == schoolList[0].toString()) {
+                          } else if (selectedMyList ==
+                              schoolList[0].toString()) {
                             isHighSchool = true;
                             isUniversity = false;
                             isOthers = false;
@@ -126,8 +128,10 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
                     //service에서 show alert dialog쓰세요1!
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FinishScreen()) //관심 키워드 선택 창으로 변경하세요!!
-                    );
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FinishScreen()) //관심 키워드 선택 창으로 변경하세요!!
+                        );
                   },
                 ),
               ),

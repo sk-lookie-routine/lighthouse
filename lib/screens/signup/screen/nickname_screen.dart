@@ -85,6 +85,7 @@ class _NickNameState extends State<NickName> {
                   title: "닉네임을\n설정해 주세요.",
                   subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
                   myStyle: signUpSubTitleStyle,
+                  myPadding: EdgeInsets.only(bottom: 60),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: padding),
