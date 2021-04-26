@@ -22,9 +22,9 @@ class Bottom extends StatelessWidget {
                   ),
                 ),
                 Tab(
-                  icon: Icon(
-                    Icons.search,
-                    size: 18,
+                  icon: Image.asset(
+                    "icon_char.png",
+                    fit: BoxFit.contain,
                   ),
                   child: Text(
                     '채팅',

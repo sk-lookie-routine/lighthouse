@@ -35,7 +35,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/
+    - assets/icons/chat.png
+    - assets/icons/home.png
+    - assets/icons/news.png
+    - assets/icons/test.png
     - assets/images/
   fonts:
     - family: NotoSansCJKkr

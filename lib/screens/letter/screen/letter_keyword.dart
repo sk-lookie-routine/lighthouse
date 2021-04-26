@@ -18,6 +18,7 @@ class _LetterKeyWordsState extends State<LetterKeyWords> {
     List<String> studyList = ["공부방법", "진로고민", "재수/n수"];
     List<String> lifeList = ["건강관리", "멘탈관리", "학교생활"];
     List<String> lifeList2 = ["생활패턴", "계획관리", "하나만더"];
+    // 수정 하기
     List<String> majorList = ["문과", "이과", "공과", "예체능"];
     String selectedMyList = "";
     int _choiceIdx;
@@ -86,10 +87,13 @@ class _LetterKeyWordsState extends State<LetterKeyWords> {
                 Stack(
                   children: [
                     Container(
-                      height: getHeightByScreenSize(size.height, 450),
+                      height: getHeightByScreenSize(size.height, 500),
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(25)),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          )),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
                         child: Column(
@@ -176,6 +180,19 @@ class _LetterKeyWordsState extends State<LetterKeyWords> {
                                 ),
                               ),
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset("assets/icons/chat.png",
+                                    width: 21, height: 35),
+                                Image.asset("assets/icons/home.png",
+                                    width: 21, height: 35),
+                                Image.asset("assets/icons/news.png",
+                                    width: 21, height: 35),
+                                Image.asset("assets/icons/test.png",
+                                    width: 21, height: 35),
+                              ],
+                            )
                           ],
                         ),
                       ),

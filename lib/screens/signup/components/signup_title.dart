@@ -16,24 +16,24 @@ class SignUpTitle extends StatelessWidget {
     this.subTitle,
   }) : super(key: key);
 
-  // Padding getPadding() {
-  //   if (subTitle == null) {
-  //     return Padding(
-  //       padding: const EdgeInsets.only(bottom: 60),
-  //     );
-  //   } else {
-  //     return Padding(
-  //       padding: const EdgeInsets.only(bottom: 44),
-  //       child: SizedBox(
-  //         width: double.infinity,
-  //         child: Text(
-  //           subTitle,
-  //           style: myStyle,
-  //         ),
-  //       ),
-  //     );
-  //   }
-  // }
+  Padding getPadding() {
+    if (subTitle == null) {
+      return Padding(
+        padding: myPadding,
+      );
+    } else {
+      return Padding(
+        padding: myPadding,
+        child: SizedBox(
+          width: double.infinity,
+          child: Text(
+            subTitle,
+            style: myStyle,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class SignUpTitle extends StatelessWidget {
               ),
             ),
           ),
-          Padding(padding: myPadding),
+          getPadding(),
         ],
       ),
     );

@@ -54,6 +54,9 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
             SignUpTitle(
               title: "추가 정보를\n입력해 주세요.",
               myPadding: EdgeInsets.only(bottom: 60),
+              myStyle: null,
+              subTitle: null,
+              titleStyle: signUpTitleStyle,
             ),
             SizedBox(
               height: getHeightByScreenSize(size.height, 310),

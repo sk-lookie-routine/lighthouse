@@ -35,99 +35,113 @@ class _SignUpMoreInfoState extends State<SignUpMoreInfo> {
     String selectedMyList;
     double width;
 
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SignUpTitle(
-            title: "추가 정보를\n입력해 주세요.",
-            myStyle: signUpSubTitleStyle,
-            myPadding: EdgeInsets.only(bottom: 60),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: '이전 페이지',
+            color: Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          SizedBox(
-            height: getHeightByScreenSize(size.height, 310),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
-              child: ListView(
-                children: [
-                  Text(
-                    '성별',
-                    style: moreInfoSubText,
+        ),
+        body: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SignUpTitle(
+                title: "추가 정보를\n입력해 주세요.",
+                myStyle: signUpSubTitleStyle,
+                myPadding: EdgeInsets.only(bottom: 60),
+              ),
+              SizedBox(
+                height: getHeightByScreenSize(size.height, 310),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 36),
+                  child: ListView(
+                    children: [
+                      Text(
+                        '성별',
+                        style: moreInfoSubText,
+                      ),
+                      SingleChoice(
+                        sexList,
+                        EdgeInsets.fromLTRB(54, 11, 54, 11),
+                        onSelectionChanged: (selectedList) {
+                          setState(() {
+                            selectedMyList = selectedList;
+                          });
+                        },
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 22),
+                      ),
+                      Text(
+                        '학교',
+                        style: moreInfoSubText,
+                      ),
+                      SingleChoice(
+                        schoolList,
+                        EdgeInsets.fromLTRB(19, 8, 19, 8),
+                        onSelectionChanged: (selectedList) {
+                          setState(() {
+                            selectedMyList = selectedList;
+                            if (selectedMyList == schoolList[1].toString()) {
+                              isUniversity = true;
+                              isHighSchool = false;
+                              isOthers = false;
+                            } else if (selectedMyList ==
+                                schoolList[0].toString()) {
+                              isHighSchool = true;
+                              isUniversity = false;
+                              isOthers = false;
+                            } else {
+                              isUniversity = false;
+                              isHighSchool = false;
+                              isOthers = true;
+                            }
+                          });
+                        },
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 22),
+                      ),
+                      isUniversity
+                          ? _majorInfo()
+                          : (isHighSchool
+                              ? KeyWordInfo(
+                                  gradeList, EdgeInsets.fromLTRB(28, 8, 28, 8))
+                              : KeyWordInfo(
+                                  otherList, EdgeInsets.fromLTRB(19, 8, 19, 8)))
+                    ],
                   ),
-                  SingleChoice(
-                    sexList,
-                    EdgeInsets.fromLTRB(54, 11, 54, 11),
-                    onSelectionChanged: (selectedList) {
-                      setState(() {
-                        selectedMyList = selectedList;
-                      });
+                ),
+              ),
+              SizedBox(
+                width: size.width * 1 - buttonPadding * 2,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 33),
+                  child: SignUpButton(
+                    text: "저장 후 시작하기",
+                    onPressed: () {
+                      return showAlertDialog(
+                        context,
+                        "주의",
+                        "추가정보를 모두 입력하지 않으면\n서비스 이용에 제한이 있습니다.",
+                        () {},
+                        () {},
+                      );
                     },
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 22),
-                  ),
-                  Text(
-                    '학교',
-                    style: moreInfoSubText,
-                  ),
-                  SingleChoice(
-                    schoolList,
-                    EdgeInsets.fromLTRB(19, 8, 19, 8),
-                    onSelectionChanged: (selectedList) {
-                      setState(() {
-                        selectedMyList = selectedList;
-                        if (selectedMyList == schoolList[1].toString()) {
-                          isUniversity = true;
-                          isHighSchool = false;
-                          isOthers = false;
-                        } else if (selectedMyList == schoolList[0].toString()) {
-                          isHighSchool = true;
-                          isUniversity = false;
-                          isOthers = false;
-                        } else {
-                          isUniversity = false;
-                          isHighSchool = false;
-                          isOthers = true;
-                        }
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 22),
-                  ),
-                  isUniversity
-                      ? _majorInfo()
-                      : (isHighSchool
-                          ? KeyWordInfo(
-                              gradeList, EdgeInsets.fromLTRB(28, 8, 28, 8))
-                          : KeyWordInfo(
-                              otherList, EdgeInsets.fromLTRB(19, 8, 19, 8)))
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          SizedBox(
-            width: size.width * 1 - buttonPadding * 2,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 33),
-              child: SignUpButton(
-                text: "저장 후 시작하기",
-                onPressed: () {
-                  return showAlertDialog(
-                    context,
-                    "주의",
-                    "추가정보를 모두 입력하지 않으면\n서비스 이용에 제한이 있습니다.",
-                    () {},
-                    () {},
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
 

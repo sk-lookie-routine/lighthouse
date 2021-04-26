@@ -6,6 +6,7 @@ import 'package:lighthouse/screens/signup/screens/moreinfo_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/constants.dart';
+import 'package:lighthouse/utilities/styles.dart';
 
 class NickNameScreen extends StatefulWidget {
   _NickNameScreenState createState() => _NickNameScreenState();
@@ -132,7 +133,9 @@ class _NickNameScreenState extends State<NickNameScreen> {
                     SignUpTitle(
                       title: "닉네임을\n설정해 주세요.",
                       subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
+                      myStyle: signUpSubTitleStyle,
                       myPadding: EdgeInsets.only(bottom: 44),
+                      titleStyle: signUpTitleStyle,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: padding),

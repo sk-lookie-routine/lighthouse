@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/screens/bottom.dart';
 import 'package:lighthouse/screens/letter/screen/letter_keyword.dart';
+import 'package:lighthouse/screens/signup/screen/finish_screen.dart';
 import 'package:lighthouse/screens/signup/screen/interests_screen.dart';
+import 'package:lighthouse/screens/signup/screens/moreinfo_screen.dart';
 import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
