@@ -14,7 +14,7 @@ class InterestsScreen extends StatefulWidget {
 }
 
 class _InterestsScreenState extends State<InterestsScreen> {
-  List<String> _selectedKeywordsList = [];
+  List<String> _selectedKeywordsList = ["","",""];
   bool _isButtonAble = false;
 
   _isAllKeywordsSelected(){
@@ -38,7 +38,11 @@ class _InterestsScreenState extends State<InterestsScreen> {
                       context,
                       MoreInfoScreen.id,
                     );
-                  }:null,
+                  }:(){
+    Navigator.pushNamed(
+    context,
+    MoreInfoScreen.id,
+    );},
             ),
           ],
         ),
