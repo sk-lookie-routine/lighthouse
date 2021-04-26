@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lighthouse/screens/letter/screen/letter_keyword.dart';
-import 'package:lighthouse/screens/signup/screen/interests_screen.dart';
 import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 
@@ -23,7 +21,7 @@ class App extends StatelessWidget {
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
                 if (!snapshot.hasData) {
-                  return LetterKeyWords();
+                  //return LetterKeyWords();
                 } else {
                   //계정 정보 있음(sign up 과정을 끝냈는지는 알 수 없음)
                   return NickNameScreen();

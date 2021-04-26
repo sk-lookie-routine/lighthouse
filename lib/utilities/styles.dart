@@ -1,61 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const signUpTitleStyle = TextStyle(
+var signUpTextFieldTextStyle = TextStyle(
     color: const Color(0xff1b1b1b),
-    fontWeight: FontWeight.w700,
     fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 24.0);
+    fontSize: ScreenUtil().setSp(16));
 
-const letterKeyWordTitleStyle = TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.w700,
+var appBarTitleDefaultextStyle = TextStyle(
+    color:  const Color(0xff161616),
+    fontWeight: FontWeight.w500,
     fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 24.0);
+    fontSize: ScreenUtil().setSp(18));
 
-const signUpSubTitleStyle = TextStyle(
-    color: const Color(0xff999999),
-    fontWeight: FontWeight.w400,
-    fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 14.0);
-
-const signUpSubTitleStyle2 = TextStyle(
-    color: const Color(0xff999999),
-    fontWeight: FontWeight.w400,
-    fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 12.0);
-
-const signUpTextFieldTextStyle = TextStyle(
-    color: const Color(0xff1b1b1b),
-    fontWeight: FontWeight.w400,
-    fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 16.0);
-
-const moreInfoSubText = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
-
-const signUpMidTitleTextStyle = TextStyle(
+var signUpMidTitleTextStyle = TextStyle(
     color: Colors.black,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
     fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 14.0);
+    fontSize: ScreenUtil().setSp(14));
 
-const signUpGradeTextStyle = TextStyle(
+var signUpGradeTextStyle = TextStyle(
     color: primaryColor,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
     fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 14.0);
+    fontSize: ScreenUtil().setSp(14));
 
-const TextFormFieldErrorTextStyle = TextStyle(
+var TextFormFieldErrorTextStyle = TextStyle(
     color: const Color(0xffff3120),
-    fontWeight: FontWeight.w400,
     fontFamily: notoSans,
-    fontStyle: FontStyle.normal,
-    fontSize: 12.0);
+    fontSize: ScreenUtil().setSp(12));

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lighthouse/screens/signup/components/single_choice.dart';
 import 'package:lighthouse/utilities/styles.dart';
-
+/*
 class KeyWordInfo extends StatefulWidget {
   _KeyWordInfoState createState() => _KeyWordInfoState();
   List<String> myList;
@@ -16,7 +16,7 @@ class _KeyWordInfoState extends State<KeyWordInfo> {
       children: [
         Text(
           '학년',
-          style: moreInfoSubText,
+          style: KeywordTitleTextStyle,
         ),
         SingleChoice(
           widget.myList,
@@ -34,3 +34,7 @@ class _KeyWordInfoState extends State<KeyWordInfo> {
     );
   }
 }
+
+
+
+ */

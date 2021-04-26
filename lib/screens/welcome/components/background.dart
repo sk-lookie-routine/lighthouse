@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lighthouse/utilities/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -26,11 +26,11 @@ class Background extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: getHeightByScreenSize(size.height, 159),
-            left: getWidthtByScreenSize(size.width, 36),
+            top: ScreenUtil().setHeight(135),
+            left: ScreenUtil().setWidth(36),
             child: Image.asset(
               "assets/images/logo_light.png",
-              width: getWidthtByScreenSize(size.width, 170),
+              width: ScreenUtil().setWidth(170),
             ),
           ),
           child,

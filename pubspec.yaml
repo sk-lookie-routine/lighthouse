@@ -17,6 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_screenutil: ^5.0.0
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.3
   google_sign_in: ^4.5.9
@@ -36,6 +37,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/icons/navigation/
     - assets/images/
   fonts:
     - family: NotoSansCJKkr

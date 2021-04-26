@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:lighthouse/components/login_button.dart';
-import 'package:lighthouse/utilities/constants.dart';
+import 'package:lighthouse/components/signup_text_and_button.dart';
+import 'package:lighthouse/screens/signin/signin_screen.dart';
+import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/screens/welcome/components/background.dart';
 import 'package:lighthouse/services/login.dart';
+import 'package:lighthouse/utilities/fonts.dart';
+import 'icon_login_button.dart';
+import 'no_icon_login_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Body extends StatelessWidget {
-  final double padding = 17;
+  final double btnWidth = 326;
+  final double btnHeight = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -16,35 +22,38 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Text(
-              "로그인",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24.0),
-              textAlign: TextAlign.center,
+            SizedBox(
+              width: ScreenUtil().setWidth(btnWidth),
+              height: ScreenUtil().setHeight(btnHeight),
+              child: NoIconLoginButton(
+                onPressed: (){
+                  Navigator.pushNamed(
+                    context,
+                    SignInScreen.id,
+                  );
+                },
+                text: "이메일 로그인",
+                textColor: kakaoSecondaryColor,
+                color: const Color(0xffebf4ff),
+              ),
             ),
             SizedBox(
-              height: getHeightByScreenSize(size.height, 11),
-            ),
-            Text(
-              "sns 아이디로 간편하게 로그인하고\n입시 고민을 해결해 보세요!",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12.0),
-              textAlign: TextAlign.center,
+              height: ScreenUtil().setHeight(14),
             ),
             SizedBox(
-              height: getHeightByScreenSize(size.height, 14),
-            ),
-            SizedBox(
-              width: size.width * 1 - padding * 2,
-              child: LoginButton(
-                onPressed: signInWithKaKao,
+              width: ScreenUtil().setWidth(btnWidth),
+              height: ScreenUtil().setHeight(btnHeight),
+              child: IconLoginButton(
+                onPressed: (){
+                  Navigator.pushNamed(
+                    context,
+                    NickNameScreen.id,
+                  );
+                },
+                //onPressed: signInWithKaKao,
                 iconImage: Image.asset(
                   "assets/icons/icon_kakao.png",
-                  width: 18,
+                  width: ScreenUtil().setWidth(18),
                 ),
                 text: "카카오 로그인",
                 textColor: kakaoSecondaryColor,
@@ -52,15 +61,16 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: getHeightByScreenSize(size.height, 14),
+              height: ScreenUtil().setHeight(14),
             ),
             SizedBox(
-              width: size.width * 1 - padding * 2,
-              child: LoginButton(
+              width: ScreenUtil().setWidth(btnWidth),
+              height: ScreenUtil().setHeight(btnHeight),
+              child: IconLoginButton(
                 onPressed: signInWithGoogle,
                 iconImage: Image.asset(
                   "assets/icons/icon_google.png",
-                  width: 18,
+                  width: ScreenUtil().setWidth(18),
                 ),
                 text: "Google 계정으로 로그인",
                 textColor: Colors.black,
@@ -68,8 +78,9 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: getHeightByScreenSize(size.height, 94),
+              height: ScreenUtil().setHeight(19),
             ),
+            SignUpTextAndButton(context: context),
           ],
         ),
       ),
