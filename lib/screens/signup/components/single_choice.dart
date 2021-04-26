@@ -22,7 +22,7 @@ class _SingleChoiceState extends State<SingleChoice> {
       choices.add(ChoiceChip(
         backgroundColor: Colors.white,
         side: BorderSide(color: primaryColor),
-        selectedColor: keywordColor,
+        selectedColor: primaryLightColor,
         padding: widget.mypadding,
         label: Text(
           item,

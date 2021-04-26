@@ -1,143 +1,166 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lighthouse/components/signup_button.dart';
-import 'package:lighthouse/screens/signup/components/moreinfo_keyword.dart';
-import 'package:lighthouse/screens/signup/components/signup_title.dart';
-import 'package:lighthouse/screens/signup/components/single_choice.dart';
+import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
+import 'package:lighthouse/components/chips/keywords_chip_group.dart';
+import 'package:lighthouse/components/texts/title.dart';
+import 'package:lighthouse/screens/signup/components/moreinfo_keyword_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
-import 'package:lighthouse/utilities/constants.dart';
+import 'package:lighthouse/services/show_alert_dialog.dart';
+import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
-import 'package:lighthouse/utilities/styles.dart';
+import 'package:lighthouse/utilities/variables.dart';
 
 class MoreInfoScreen extends StatefulWidget {
+  static const String id = 'moreinfo_screen';
   _MoreInfoScreenState createState() => _MoreInfoScreenState();
 }
 
 class _MoreInfoScreenState extends State<MoreInfoScreen> {
-  bool _selected = false;
-  bool isUniversity = false;
-  bool isHighSchool = false;
-  bool isOthers = false;
-  void onSelected(bool selected) {
-    setState(() {
-      _selected = !_selected;
-    });
+  String _selectedChip = "";
+  List<String> _selectedKeywordsList = ["", "", "", ""];
+  bool _isAllEntered = false;
+  Widget _widget = Container();
+
+  _isAllKeywordsSelected() {
+    if (_selectedKeywordsList.contains(""))
+      _isAllEntered = false;
+    else
+      _isAllEntered = true;
+  }
+
+  Widget _buildChip({int index, String label}) {
+    return ChoiceChip(
+      label: Text(
+        label,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: notoSans,
+          fontSize: ScreenUtil().setSp(14),
+        ),
+      ),
+      onSelected: (isSelected) {},
+      side: BorderSide(color: primaryColor),
+      selectedColor: primaryLightColor,
+      selected: false,
+      backgroundColor: Colors.white,
+      padding: EdgeInsets.symmetric(
+          horizontal: ScreenUtil().setWidth(11),
+          vertical: ScreenUtil().setHeight(7)),
+    );
+  }
+
+  _getChips(String selected) {
+    if (selected == Keywords.school[0]) {
+      _widget = KeywordsChipGroup(
+        title: "학년",
+        keywordsList: Keywords.highSchoolGrade,
+        onSelectionChanged: (selectedKeyword) {
+          setState(() {
+            _selectedKeywordsList[2] = selectedKeyword;
+            _isAllKeywordsSelected();
+          });
+        },
+        crossAxisCount: 3,
+        horizontalPadding: 20,
+      );
+    } else if (selected == Keywords.school[1]) {
+      _widget = KeywordsChipGroup(
+        title: "학년",
+        keywordsList: Keywords.collegeGrade,
+        onSelectionChanged: (selectedKeyword) {
+          setState(() {
+            _selectedKeywordsList[2] = selectedKeyword;
+            _isAllKeywordsSelected();
+          });
+        },
+        crossAxisCount: 3,
+        horizontalPadding: 20,
+      );
+    } else if (selected == Keywords.school[2]) {
+      _widget = KeywordsChipGroup(
+        title: "학년",
+        keywordsList: Keywords.otherGrade,
+        onSelectionChanged: (selectedKeyword) {
+          setState(() {
+            _selectedKeywordsList[2] = selectedKeyword;
+            _isAllKeywordsSelected();
+          });
+        },
+        crossAxisCount: 3,
+        horizontalPadding: 10,
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    List<String> sexList = ["여자", "남자"];
-    List<String> schoolList = ["고등학교", "대학교", "그 외"];
-    List<String> gradeList = ["1학년", "2학년", "3학년"];
-    List<String> otherList = ["검정고시", "재수/n수", "반수/편입"];
-    String selectedMyList;
-    double width;
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          tooltip: '이전 페이지',
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text("완료"),
+            onPressed: _isAllEntered
+                ? () {
+                    Navigator.pushNamed(
+                      context,
+                      FinishScreen.id,
+                    );
+                  }
+                : () {
+                    showAlertDialog(
+                        context, "주의", "추가정보를 모두 입력하지 않으면\n서비스 이용에 제한이 있습니다.",
+                        () {
+                      Navigator.pop(context);
+                    }, () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(
+                        context,
+                        FinishScreen.id,
+                      );
+                    });
+                  },
+          ),
+        ],
       ),
-      body: SizedBox(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SignUpTitle(
               title: "추가 정보를\n입력해 주세요.",
-              myPadding: EdgeInsets.only(bottom: 60),
-              myStyle: null,
-              subTitle: null,
-              titleStyle: signUpTitleStyle,
             ),
-            SizedBox(
-              height: getHeightByScreenSize(size.height, 310),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 36),
-                child: ListView(
-                  children: [
-                    Text(
-                      '성별',
-                      style: moreInfoSubText,
-                    ),
-                    SingleChoice(
-                      sexList,
-                      EdgeInsets.fromLTRB(54, 11, 54, 11),
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedMyList = selectedList;
-                        });
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 22),
-                    ),
-                    Text(
-                      '학교',
-                      style: moreInfoSubText,
-                    ),
-                    SingleChoice(
-                      schoolList,
-                      EdgeInsets.fromLTRB(19, 8, 19, 8),
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedMyList = selectedList;
-                          if (selectedMyList == schoolList[1].toString()) {
-                            isUniversity = true;
-                            isHighSchool = false;
-                            isOthers = false;
-                          } else if (selectedMyList ==
-                              schoolList[0].toString()) {
-                            isHighSchool = true;
-                            isUniversity = false;
-                            isOthers = false;
-                          } else {
-                            isUniversity = false;
-                            isHighSchool = false;
-                            isOthers = true;
-                          }
-                        });
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 22),
-                    ),
-                    isUniversity
-                        ? _majorInfo()
-                        : (isHighSchool
-                            ? KeyWordInfo(
-                                gradeList, EdgeInsets.fromLTRB(28, 8, 28, 8))
-                            : KeyWordInfo(
-                                otherList, EdgeInsets.fromLTRB(19, 8, 19, 8)))
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              width: size.width * 1 - buttonPadding * 2,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 33),
-                child: SignUpButton(
-                  text: "저장 후 시작하기",
-                  onPressed: () {
-                    //service에서 show alert dialog쓰세요1!
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                FinishScreen()) //관심 키워드 선택 창으로 변경하세요!!
-                        );
+            Column(
+              children: [
+                KeywordsChipGroup(
+                  title: "성별",
+                  keywordsList: Keywords.gender,
+                  onSelectionChanged: (selectedKeyword) {
+                    setState(() {
+                      _selectedKeywordsList[0] = selectedKeyword;
+                      _isAllKeywordsSelected();
+                    });
                   },
+                  crossAxisCount: 2,
+                  horizontalPadding: 45,
                 ),
-              ),
+                KeywordsChipGroup(
+                  title: "학교",
+                  keywordsList: Keywords.school,
+                  onSelectionChanged: (selectedKeyword) {
+                    setState(() {
+                      _selectedKeywordsList[0] = selectedKeyword;
+                      _getChips(selectedKeyword);
+                      _isAllKeywordsSelected();
+                    });
+                  },
+                  crossAxisCount: 3,
+                  horizontalPadding: 17,
+                ),
+                _widget,
+              ],
             ),
           ],
         ),
@@ -151,7 +174,6 @@ Widget _majorInfo() {
     children: [
       Text(
         '학과',
-        style: moreInfoSubText,
       ),
       Padding(padding: EdgeInsets.only(bottom: 30)), //패딩 9 주면 너무 가까움..
       Container(

@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpButton extends StatelessWidget {
+class RoundedFinishedButton extends StatelessWidget {
   final String text;
   final Function onPressed;
 
-  const SignUpButton({
+  const RoundedFinishedButton({
     Key key,
     @required this.text,
     @required this.onPressed,
@@ -18,12 +19,10 @@ class SignUpButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
             color:  Colors.white,
-            fontWeight: FontWeight.w400,
             fontFamily: notoSans,
-            fontStyle:  FontStyle.normal,
-            fontSize: 20.0
+            fontSize: ScreenUtil().setSp(16),
         ),
       ),
       style: TextButton.styleFrom(
