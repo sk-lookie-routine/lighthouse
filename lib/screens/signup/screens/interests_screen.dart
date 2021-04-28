@@ -14,12 +14,14 @@ class InterestsScreen extends StatefulWidget {
 }
 
 class _InterestsScreenState extends State<InterestsScreen> {
-  List<String> _selectedKeywordsList = ["","",""];
+  List<String> _selectedKeywordsList = ["", "", ""];
   bool _isButtonAble = false;
 
-  _isAllKeywordsSelected(){
-    if(_selectedKeywordsList.contains("")) _isButtonAble = false;
-    else _isButtonAble = true;
+  _isAllKeywordsSelected() {
+    if (_selectedKeywordsList.contains(""))
+      _isButtonAble = false;
+    else
+      _isButtonAble = true;
   }
 
   Widget build(BuildContext context) {
@@ -32,17 +34,14 @@ class _InterestsScreenState extends State<InterestsScreen> {
           actions: <Widget>[
             TextButton(
               child: Text("다음"),
-              onPressed: _isButtonAble?
-                  (){
-                    Navigator.pushNamed(
-                      context,
-                      MoreInfoScreen.id,
-                    );
-                  }:(){
-    Navigator.pushNamed(
-    context,
-    MoreInfoScreen.id,
-    );},
+              onPressed: _isButtonAble
+                  ? () {
+                      Navigator.pushNamed(
+                        context,
+                        MoreInfoScreen.id,
+                      );
+                    }
+                  : null,
             ),
           ],
         ),

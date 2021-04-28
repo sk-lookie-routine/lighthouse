@@ -27,38 +27,45 @@ class KeywordsChipGroup extends StatefulWidget {
 
 class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
   String selectedKeywords = "";
+  List<String> selectedList = [];
+  bool _selected = false;
   BorderSide _borderSide = BorderSide(color: primaryColor);
 
-
-  Widget _getTitle(){
+  Widget _getTitle() {
     return Text(
-        widget.title,
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontFamily: notoSans,
-          fontSize: ScreenUtil().setSp(14),
-        ),
-      );
+      widget.title,
+      style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontFamily: notoSans,
+        fontSize: ScreenUtil().setSp(14),
+      ),
+    );
   }
 
-  Widget _buildChip(String label){
+  Widget _buildChip(String label) {
     return ChoiceChip(
       label: Text(
-          label,
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: notoSans,
-            fontSize: ScreenUtil().setSp(14),
+        label,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: notoSans,
+          fontSize: ScreenUtil().setSp(14),
         ),
         overflow: TextOverflow.visible,
       ),
       pressElevation: 1,
-      selected: selectedKeywords == label,
+      selected: selectedList.contains(label),
       onSelected: (isSelected) {
         setState(() {
           selectedKeywords = label;
-          widget.onSelectionChanged(selectedKeywords);
+          if (selectedList.contains(selectedKeywords)) {
+            selectedList.removeWhere(
+                (element) => element.toString() == selectedKeywords);
+          } else {
+            selectedList.add(selectedKeywords);
+          }
+          widget.onSelectionChanged(selectedList.toString());
         });
       },
       selectedColor: primaryLightColor,
@@ -72,13 +79,14 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.horizontalPadding == null) widget.horizontalPadding = 10;
+    if (widget.horizontalPadding == null) widget.horizontalPadding = 10;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
           padding: EdgeInsets.only(
-              bottom: ScreenUtil().setHeight(1),),
+            bottom: ScreenUtil().setHeight(1),
+          ),
           child: _getTitle(),
         ),
         SizedBox(
@@ -87,9 +95,9 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
         GridView.count(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          childAspectRatio: 2,  //야메임 고쳐야함
+          childAspectRatio: 2, //야메임 고쳐야함
           crossAxisCount: widget.crossAxisCount,
-          children: widget.keywordsList.map((tag) =>_buildChip(tag)).toList(),
+          children: widget.keywordsList.map((tag) => _buildChip(tag)).toList(),
         ),
       ],
     );
