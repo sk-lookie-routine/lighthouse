@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lighthouse/components/buttons/double_check_button.dart';
 import 'package:lighthouse/components/texts/title.dart';
 import 'package:lighthouse/screens/signup/screens/interests_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
@@ -63,7 +64,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
       maxLength: 5,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
         border: OutlineInputBorder(),
         hintText: '닉네임 입력',
         counterText: '$_textCount/최대 5자',
@@ -136,23 +137,39 @@ class _NickNameScreenState extends State<NickNameScreen> {
       body: Container(
         height: size.height,
         width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
-          child: Column(
-            children: [
-              SignUpTitle(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
+              child: SignUpTitle(
                 title: "닉네임을\n설정해 주세요.",
                 subTitle: "닉네임은 바꿀 수 없으니 신중히 정해주세요!",
               ),
-              SizedBox(
-                height: ScreenUtil().setWidth(44),
+            ),
+            SizedBox(
+              height: ScreenUtil().setWidth(44),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Form(
+                      key: _formKey,
+                      child: UserNickNameInput(),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
+                    child: DoubleCheckButton(
+                      onPressed: (){}
+                      ),
+                  ),
+                ],
               ),
-              Form(
-                key: _formKey,
-                child: UserNickNameInput(),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

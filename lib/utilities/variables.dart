@@ -54,3 +54,23 @@ class Keywords {
     "반수/편입",
   ];
 }
+
+//유효성 관련 문구들
+class ValidationTexts {
+  //[회원가입] 유효하지 않을 때
+  static final String alreadyInUseEmail = "사용중인 아이디입니다";
+  static final String unValidEmailType = " 유효하지 않은 이메일 형식입니다.";
+  static final String unValidPasswordType = "8~16자의 영문, 숫자, 특수문자만 사용 가능합니다.";
+  static final String notSamePassword = "비밀번호가 일치하지 않습니다.";
+
+  //[회원가입] 유효할 때
+  static final String validateEmail = "사용 가능한 아이디입니다.";
+  static final String validatePassword = "사용 가능한 비밀번호입니다.";
+
+  //[닉네임] 유호하지 않을 때
+  static final String alreadyInUseNickname = "사용중인 닉네임입니다.";
+  static final String canNotUseSpecialMarkInNickname = "특수문자는 쓸 수 없습니다.";
+
+  //[닉네임] 유효할 때
+  static final String validateNickname = "사용 가능한 닉네임입니다.";
+}

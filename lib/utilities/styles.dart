@@ -30,3 +30,8 @@ var TextFormFieldErrorTextStyle = TextStyle(
     color: const Color(0xffff3120),
     fontFamily: notoSans,
     fontSize: ScreenUtil().setSp(12));
+
+var SignUpMiniTitleTextStyle = TextStyle(
+    color:  const Color(0xffb2b2b2),
+    fontFamily: notoSans,
+    fontSize: ScreenUtil().setSp(10));
