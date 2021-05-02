@@ -30,74 +30,75 @@ class _InterestsScreenState extends State<InterestsScreen> {
       height: ScreenUtil().setWidth(28),
     );
     return Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            TextButton(
-              child: Text("다음"),
-              onPressed: _isButtonAble
-                  ? () {
-                      Navigator.pushNamed(
-                        context,
-                        MoreInfoScreen.id,
-                      );
-                    }
-                  : null,
+      appBar: AppBar(
+        actions: <Widget>[
+          TextButton(
+            child: Text("다음"),
+            onPressed: _isButtonAble
+                ? () {
+                    Navigator.pushNamed(
+                      context,
+                      MoreInfoScreen.id,
+                    );
+                  }
+                : null,
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SignUpTitle(
+              title: "관심 있는\n키워드를 선택해 주세요.",
+              subTitle: "대학생의 경우, 해당 키워드 관련 고민 편지/채팅을 받습니다.",
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  _sizedBox,
+                  KeywordsChipGroup(
+                    title: "학업",
+                    keywordsList: Keywords.academic,
+                    onSelectionChanged: (selectedKeyword) {
+                      setState(() {
+                        _selectedKeywordsList[0] = selectedKeyword;
+                        _isAllKeywordsSelected();
+                      });
+                    },
+                    crossAxisCount: 3,
+                  ),
+                  _sizedBox,
+                  KeywordsChipGroup(
+                    title: "생활 관리",
+                    keywordsList: Keywords.lifeManagement,
+                    onSelectionChanged: (selectedKeyword) {
+                      setState(() {
+                        _selectedKeywordsList[1] = selectedKeyword;
+                        _isAllKeywordsSelected();
+                      });
+                    },
+                    crossAxisCount: 3,
+                  ),
+                  _sizedBox,
+                  KeywordsChipGroup(
+                    title: "전공",
+                    keywordsList: Keywords.major,
+                    onSelectionChanged: (selectedKeyword) {
+                      setState(() {
+                        _selectedKeywordsList[2] = selectedKeyword;
+                        _isAllKeywordsSelected();
+                      });
+                    },
+                    crossAxisCount: 4,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SignUpTitle(
-                title: "관심 있는\n키워드를 선택해 주세요.",
-                subTitle: "대학생의 경우, 해당 키워드 관련 고민 편지/채팅을 받습니다.",
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    _sizedBox,
-                    KeywordsChipGroup(
-                      title: "학업",
-                      keywordsList: Keywords.academic,
-                      onSelectionChanged: (selectedKeyword) {
-                        setState(() {
-                          _selectedKeywordsList[0] = selectedKeyword;
-                          _isAllKeywordsSelected();
-                        });
-                      },
-                      crossAxisCount: 3,
-                    ),
-                    _sizedBox,
-                    KeywordsChipGroup(
-                      title: "생활 관리",
-                      keywordsList: Keywords.lifeManagement,
-                      onSelectionChanged: (selectedKeyword) {
-                        setState(() {
-                          _selectedKeywordsList[1] = selectedKeyword;
-                          _isAllKeywordsSelected();
-                        });
-                      },
-                      crossAxisCount: 3,
-                    ),
-                    _sizedBox,
-                    KeywordsChipGroup(
-                      title: "전공",
-                      keywordsList: Keywords.major,
-                      onSelectionChanged: (selectedKeyword) {
-                        setState(() {
-                          _selectedKeywordsList[2] = selectedKeyword;
-                          _isAllKeywordsSelected();
-                        });
-                      },
-                      crossAxisCount: 4,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }

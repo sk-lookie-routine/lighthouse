@@ -9,7 +9,7 @@ Future<UserCredential> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
   print("=====================================================");
-  print("googleUser: "+googleUser.toString());
+  print("googleUser: " + googleUser.toString());
   print("=====================================================");
   // Obtain the auth details from the request
   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -21,7 +21,7 @@ Future<UserCredential> signInWithGoogle() async {
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
-
+/*
 Future<UserCredential> signInWithKaKao() async {
   final clientState = Uuid().v4();
   print("=====================================================");
@@ -74,3 +74,4 @@ Future<UserCredential> signInWithKaKao() async {
   return await FirebaseAuth.instance
       .signInWithCustomToken(response.body);
 }
+*/

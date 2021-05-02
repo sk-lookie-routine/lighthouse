@@ -11,13 +11,14 @@ import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lighthouse/utilities/styles.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

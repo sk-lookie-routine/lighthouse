@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
-import 'package:lighthouse/components/chips/keywords_chip_group.dart';
+import 'package:lighthouse/components/chips/keywords_chip_single.dart';
 import 'package:lighthouse/components/texts/title.dart';
-import 'package:lighthouse/screens/signup/components/moreinfo_keyword_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/variables.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MoreInfoScreen extends StatefulWidget {
   static const String id = 'moreinfo_screen';
+
   _MoreInfoScreenState createState() => _MoreInfoScreenState();
 }
 
@@ -21,6 +21,7 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
   List<String> _selectedKeywordsList = ["", "", "", ""];
   bool _isAllEntered = false;
   Widget _widget = Container();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   _isAllKeywordsSelected() {
     if (_selectedKeywordsList.contains(""))
@@ -50,14 +51,19 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
     );
   }
 
-  _getChips(String selected) {
+  _getChips(String selected, Info info) {
     if (selected == Keywords.school[0]) {
-      _widget = KeywordsChipGroup(
+      //고등학교
+      _widget = KeywordsChipSingle(
         title: "학년",
         keywordsList: Keywords.highSchoolGrade,
         onSelectionChanged: (selectedKeyword) {
           setState(() {
             _selectedKeywordsList[2] = selectedKeyword;
+            info.grade = selectedKeyword;
+            print(info.gender);
+            print(info.school);
+            print(info.grade);
             _isAllKeywordsSelected();
           });
         },
@@ -65,25 +71,38 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
         horizontalPadding: 20,
       );
     } else if (selected == Keywords.school[1]) {
-      _widget = KeywordsChipGroup(
-        title: "학년",
-        keywordsList: Keywords.collegeGrade,
-        onSelectionChanged: (selectedKeyword) {
-          setState(() {
-            _selectedKeywordsList[2] = selectedKeyword;
-            _isAllKeywordsSelected();
-          });
-        },
-        crossAxisCount: 3,
-        horizontalPadding: 20,
-      );
+      //대학교
+      _widget = Column(children: [
+        _majorInfo(),
+        KeywordsChipSingle(
+          title: "학년",
+          keywordsList: Keywords.collegeGrade,
+          onSelectionChanged: (selectedKeyword) {
+            setState(() {
+              _selectedKeywordsList[2] = selectedKeyword;
+              info.grade = selectedKeyword;
+              print(info.gender);
+              print(info.school);
+              print(info.grade);
+              _isAllKeywordsSelected();
+            });
+          },
+          crossAxisCount: 3,
+          horizontalPadding: 20,
+        )
+      ]);
     } else if (selected == Keywords.school[2]) {
-      _widget = KeywordsChipGroup(
+      //그외
+      _widget = KeywordsChipSingle(
         title: "학년",
         keywordsList: Keywords.otherGrade,
         onSelectionChanged: (selectedKeyword) {
           setState(() {
             _selectedKeywordsList[2] = selectedKeyword;
+            info.grade = selectedKeyword;
+            print(info.gender);
+            print(info.school);
+            print(info.grade);
             _isAllKeywordsSelected();
           });
         },
@@ -96,7 +115,9 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
   }
 
   Widget build(BuildContext context) {
+    var info = new Info();
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: <Widget>[
           TextButton(
@@ -124,45 +145,56 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SignUpTitle(
-              title: "추가 정보를\n입력해 주세요.",
-            ),
-            Column(
-              children: [
-                KeywordsChipGroup(
-                  title: "성별",
-                  keywordsList: Keywords.gender,
-                  onSelectionChanged: (selectedKeyword) {
-                    setState(() {
-                      _selectedKeywordsList[0] = selectedKeyword;
-                      _isAllKeywordsSelected();
-                    });
-                  },
-                  crossAxisCount: 2,
-                  horizontalPadding: 45,
-                ),
-                KeywordsChipGroup(
-                  title: "학교",
-                  keywordsList: Keywords.school,
-                  onSelectionChanged: (selectedKeyword) {
-                    setState(() {
-                      _selectedKeywordsList[0] = selectedKeyword;
-                      _getChips(selectedKeyword);
-                      _isAllKeywordsSelected();
-                    });
-                  },
-                  crossAxisCount: 3,
-                  horizontalPadding: 17,
-                ),
-                _widget,
-              ],
-            ),
-          ],
+      body: SingleChildScrollView(
+        //키보드 bottom overflow 해결
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SignUpTitle(
+                title: "추가 정보를\n입력해 주세요.",
+              ),
+              Column(
+                children: [
+                  KeywordsChipSingle(
+                    title: "성별",
+                    keywordsList: Keywords.gender,
+                    onSelectionChanged: (selectedKeyword) {
+                      setState(() {
+                        _selectedKeywordsList[0] = (selectedKeyword);
+                        info.gender = selectedKeyword;
+                        print(info.gender);
+                        print(info.school);
+                        print(info.grade);
+                        _isAllKeywordsSelected();
+                      });
+                    },
+                    crossAxisCount: 2,
+                    horizontalPadding: 45,
+                  ),
+                  KeywordsChipSingle(
+                    title: "학교",
+                    keywordsList: Keywords.school,
+                    onSelectionChanged: (selectedKeyword) {
+                      setState(() {
+                        _selectedKeywordsList[1] = (selectedKeyword);
+                        info.school = selectedKeyword;
+                        print(info.gender);
+                        print(info.school);
+                        print(info.grade);
+                        _getChips(selectedKeyword, info);
+                        _isAllKeywordsSelected();
+                      });
+                    },
+                    crossAxisCount: 3,
+                    horizontalPadding: 17,
+                  ),
+                  _widget,
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -174,25 +206,42 @@ Widget _majorInfo() {
     children: [
       Text(
         '학과',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontFamily: notoSans,
+          fontSize: ScreenUtil().setSp(14),
+        ),
       ),
       Padding(padding: EdgeInsets.only(bottom: 30)), //패딩 9 주면 너무 가까움..
       Container(
-          height: 48,
-          child: TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: '학과 입력',
-                prefixText: ' ',
-                contentPadding: EdgeInsets.fromLTRB(16, 12, 0, 12),
-                hintStyle: TextStyle(
-                  fontSize: 16,
-                  fontFamily: notoSans,
-                  color: const Color(0xff999999),
-                )),
-          )),
+        height: 48,
+        child: TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: '학과 입력',
+            prefixText: ' ',
+            contentPadding: EdgeInsets.fromLTRB(16, 12, 0, 12),
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontFamily: notoSans,
+              color: const Color(0xff999999),
+            ),
+          ),
+        ),
+      ),
       Padding(
-        padding: EdgeInsets.only(bottom: 250),
+        padding: EdgeInsets.symmetric(
+            horizontal: ScreenUtil().setWidth(45),
+            vertical: ScreenUtil().setHeight(7)),
       ),
     ],
   );
+}
+
+class Info {
+  String gender = "";
+  String school = "";
+  String grade = "";
+  String major = "";
 }
