@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+//등급들
+enum Level {
+  bronze, silver, gold
+}
+
+//성별
+enum Gender {
+  male, female
+}
+
 //키워드들
 class Keywords {
   static final academic = [
