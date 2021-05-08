@@ -1,14 +1,11 @@
 import 'package:lighthouse/entity/level_info.dart';
 import '../utilities/variables.dart';
-import '../utilities/variables.dart';
-import '../utilities/variables.dart';
 
 class User {
-  String email;
-  String password;
   String nickname;
   LevelInfo levelInfo = LevelInfo();
   Map<String, bool> keywords = {
+    //수정
     Keywords.academic[0]: false,
     Keywords.academic[1]: false,
     Keywords.academic[2]: false,
@@ -28,13 +25,9 @@ class User {
   String grade;
 
   User({
-   this.email,
-   this.password,
-   this.nickname,
+    this.nickname,
     this.gender,
     this.grade,
     this.school,
-    this.levelInfo,
-    this.keywords,
-});
+  });
 }

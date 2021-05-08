@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/chips/keywords_chip_single.dart';
 import 'package:lighthouse/components/texts/title.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lighthouse/entity/user.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
+import 'package:lighthouse/screens/signup/screens/interests_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/variables.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MoreInfoScreen extends StatefulWidget {
   static const String id = 'moreinfo_screen';
-
   _MoreInfoScreenState createState() => _MoreInfoScreenState();
 }
 
@@ -21,7 +21,6 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
   List<String> _selectedKeywordsList = ["", "", "", ""];
   bool _isAllEntered = false;
   Widget _widget = Container();
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   _isAllKeywordsSelected() {
     if (_selectedKeywordsList.contains(""))
@@ -114,7 +113,16 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
     }
   }
 
+  List<String> _getGenderList() {
+    List<String> genderList = [];
+    genderLabel.forEach((key, value) {
+      genderList.add(value);
+    });
+    return genderList;
+  }
+
   Widget build(BuildContext context) {
+    User user = User();
     var info = new Info();
     return Scaffold(
       // resizeToAvoidBottomInset: false,
@@ -159,14 +167,14 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
                 children: [
                   KeywordsChipSingle(
                     title: "성별",
-                    keywordsList: Keywords.gender,
+                    keywordsList: _getGenderList(),
                     onSelectionChanged: (selectedKeyword) {
                       setState(() {
-                        _selectedKeywordsList[0] = (selectedKeyword);
-                        info.gender = selectedKeyword;
-                        print(info.gender);
-                        print(info.school);
-                        print(info.grade);
+                        genderLabel.forEach((key, value) {
+                          if (selectedKeyword == value) {
+                            user.gender = key;
+                          }
+                        });
                         _isAllKeywordsSelected();
                       });
                     },

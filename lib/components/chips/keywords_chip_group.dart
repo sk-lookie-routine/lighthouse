@@ -9,7 +9,7 @@ class KeywordsChipGroup extends StatefulWidget {
   bool isTitleMarked = false;
   final int crossAxisCount;
   double horizontalPadding = null;
-  final Function(String) onSelectionChanged;
+  final Function onSelectionChanged;
 
   KeywordsChipGroup({
     Key key,
@@ -58,6 +58,7 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
       selected: selectedList.contains(label),
       onSelected: (isSelected) {
         setState(() {
+          print("여기 들어ㅗㅇㅁ");
           selectedKeywords = label;
           if (selectedList.contains(selectedKeywords)) {
             selectedList.removeWhere(
@@ -65,7 +66,9 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
           } else {
             selectedList.add(selectedKeywords);
           }
-          widget.onSelectionChanged(selectedList.toString());
+          print(selectedList);
+          print(widget.onSelectionChanged.toString());
+          widget.onSelectionChanged(selectedKeywords);
         });
       },
       selectedColor: primaryLightColor,

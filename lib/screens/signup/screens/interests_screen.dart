@@ -3,25 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
 import 'package:lighthouse/components/chips/keywords_chip_group.dart';
 import 'package:lighthouse/components/texts/title.dart';
+import 'package:lighthouse/entity/user.dart';
 import 'package:lighthouse/screens/signup/screens/moreinfo_screen.dart';
-import 'package:lighthouse/utilities/styles.dart';
 import 'package:lighthouse/utilities/variables.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InterestsScreen extends StatefulWidget {
   static const String id = 'interests_screen';
+
+  //InterestsScreen(this.user);
   _InterestsScreenState createState() => _InterestsScreenState();
 }
 
 class _InterestsScreenState extends State<InterestsScreen> {
-  List<String> _selectedKeywordsList = ["", "", ""];
   bool _isButtonAble = false;
-
+  User user = User();
   _isAllKeywordsSelected() {
-    if (_selectedKeywordsList.contains(""))
-      _isButtonAble = false;
-    else
+    if (user.keywords.containsValue(true))
       _isButtonAble = true;
+    else
+      _isButtonAble = false;
   }
 
   Widget build(BuildContext context) {
@@ -63,7 +64,14 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     keywordsList: Keywords.academic,
                     onSelectionChanged: (selectedKeyword) {
                       setState(() {
-                        _selectedKeywordsList[0] = selectedKeyword;
+                        print(selectedKeyword);
+                        print("=============");
+                        print(user);
+                        print(user.nickname);
+
+                        user.keywords[selectedKeyword] =
+                            !user.keywords[selectedKeyword];
+                        print(user.keywords);
                         _isAllKeywordsSelected();
                       });
                     },
@@ -75,7 +83,10 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     keywordsList: Keywords.lifeManagement,
                     onSelectionChanged: (selectedKeyword) {
                       setState(() {
-                        _selectedKeywordsList[1] = selectedKeyword;
+                        print(selectedKeyword);
+                        print(user.keywords);
+                        print(user.keywords[selectedKeyword]);
+                        //user.keywords[selectedKeyword] = !user.keywords[selectedKeyword];
                         _isAllKeywordsSelected();
                       });
                     },
@@ -87,7 +98,8 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     keywordsList: Keywords.major,
                     onSelectionChanged: (selectedKeyword) {
                       setState(() {
-                        _selectedKeywordsList[2] = selectedKeyword;
+                        user.keywords[selectedKeyword] =
+                            !user.keywords[selectedKeyword];
                         _isAllKeywordsSelected();
                       });
                     },

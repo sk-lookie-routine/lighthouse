@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 //등급들
-enum Level {
-  bronze, silver, gold
-}
+enum Level { bronze, silver, gold }
 
 //성별
-enum Gender {
-  male, female
-}
+enum Gender { male, female }
+
+final Map<Gender, String> genderLabel = {
+  Gender.male: "남자",
+  Gender.female: "여자",
+};
 
 //키워드들
 class Keywords {
@@ -31,11 +32,6 @@ class Keywords {
     "이과",
     "공과",
     "예체능",
-  ];
-
-  static final gender = [
-    "여자",
-    "남자",
   ];
 
   static final school = [

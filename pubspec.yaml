@@ -25,6 +25,7 @@ dev_dependencies:
   flutter_web_auth: ^0.2.4
   http: ^0.13.2
   uuid: ^3.0.1
+  get: ^4.1.4
   flutter_webview_plugin: ^0.3.11
   
   dio:
