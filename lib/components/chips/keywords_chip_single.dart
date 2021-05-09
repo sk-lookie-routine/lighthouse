@@ -8,8 +8,8 @@ class KeywordsChipSingle extends StatefulWidget {
   final List<String> keywordsList;
   bool isTitleMarked = false;
   final int crossAxisCount;
-  double horizontalPadding = null;
-  final Function(String) onSelectionChanged;
+  double horizontalPadding = 0;
+  final Function(String, bool) onSelectionChanged;
 
   KeywordsChipSingle({
     Key key,
@@ -55,11 +55,13 @@ class _KeywordsChipSingleState extends State<KeywordsChipSingle> {
         overflow: TextOverflow.visible,
       ),
       pressElevation: 1,
-      selected: selectedKeywords == label,
+      selected: _selected && selectedKeywords == label,
       onSelected: (isSelected) {
         setState(() {
           selectedKeywords = label;
-          widget.onSelectionChanged(selectedKeywords);
+          _selected = isSelected;
+          widget.onSelectionChanged(
+              selectedKeywords, _selected && selectedKeywords == label);
         });
       },
       selectedColor: primaryLightColor,

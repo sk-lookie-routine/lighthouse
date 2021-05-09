@@ -58,7 +58,6 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
       selected: selectedList.contains(label),
       onSelected: (isSelected) {
         setState(() {
-          print("여기 들어ㅗㅇㅁ");
           selectedKeywords = label;
           if (selectedList.contains(selectedKeywords)) {
             selectedList.removeWhere(
@@ -66,8 +65,6 @@ class _KeywordsChipGroupState extends State<KeywordsChipGroup> {
           } else {
             selectedList.add(selectedKeywords);
           }
-          print(selectedList);
-          print(widget.onSelectionChanged.toString());
           widget.onSelectionChanged(selectedKeywords);
         });
       },

@@ -18,18 +18,20 @@ class _LetterScreenState extends State<LetterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: primaryColor,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
+      backgroundColor: primaryColor,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white,
         ),
-        body: Column(
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(36)),
               child: SignUpTitle(
                 title: "고민 키워드를\n선택해 주세요",
                 titleColor: Colors.white,
@@ -42,17 +44,17 @@ class _LetterScreenState extends State<LetterScreen> {
                   borderRadius: new BorderRadius.only(
                     topLeft: const Radius.circular(30.0),
                     topRight: const Radius.circular(30.0),
-                  )
-              ),
+                  )),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(29),
+                top: ScreenUtil().setHeight(29),
                 bottom: ScreenUtil().setHeight(13),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(31)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(31)),
                     child: KeywordsChipGroup(
                       title: "학업",
                       isTitleMarked: true,
@@ -66,7 +68,8 @@ class _LetterScreenState extends State<LetterScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(31)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(31)),
                     child: KeywordsChipGroup(
                       title: "생활 관리",
                       isTitleMarked: true,
@@ -80,7 +83,8 @@ class _LetterScreenState extends State<LetterScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(31)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(31)),
                     child: KeywordsChipGroup(
                       title: "전공",
                       keywordsList: Keywords.major,
@@ -96,15 +100,15 @@ class _LetterScreenState extends State<LetterScreen> {
                     width: ScreenUtil().setWidth(325),
                     child: RoundedFinishedButton(
                       text: '선택 완료',
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ],
               ),
             ),
           ],
-        )
+        ),
+      ),
     );
   }
 }

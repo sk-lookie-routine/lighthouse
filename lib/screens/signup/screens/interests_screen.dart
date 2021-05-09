@@ -86,7 +86,8 @@ class _InterestsScreenState extends State<InterestsScreen> {
                         print(selectedKeyword);
                         print(user.keywords);
                         print(user.keywords[selectedKeyword]);
-                        //user.keywords[selectedKeyword] = !user.keywords[selectedKeyword];
+                        user.keywords[selectedKeyword] =
+                            !user.keywords[selectedKeyword];
                         _isAllKeywordsSelected();
                       });
                     },
