@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lighthouse/classes/user.dart';
 import 'package:lighthouse/components/buttons/double_check_button.dart';
 import 'package:lighthouse/components/texts/title.dart';
 import 'package:lighthouse/screens/signup/screens/interests_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class NickNameScreen extends StatefulWidget {
   static const String id = 'nickname_screen';
@@ -12,9 +14,9 @@ class NickNameScreen extends StatefulWidget {
 }
 
 class _NickNameScreenState extends State<NickNameScreen> {
-  String _userNickName = "";
-  bool _isNotValid = false;
+  User user = User();
   bool _checkboxValue = false;
+  bool _isButtonAble = false;
   int _textCount = 0;
   final _userNickNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -28,6 +30,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
         return IconButton(
           onPressed: () {
             _userNickNameController.clear();
+            _isButtonAble = false;
           },
           icon: Icon(
             Icons.cancel_outlined,
@@ -93,21 +96,19 @@ class _NickNameScreenState extends State<NickNameScreen> {
       ),
       validator: (name) {
         if (name.isEmpty) {
-          _isNotValid = true;
           return '닉네임을 입력하세요.';
         } else if (name.length > 5) {
-          _isNotValid = true;
           return '5글자 이내로 설정해주세요.';
         }
-        _isNotValid = false;
         return null;
       },
-      onChanged: (String e) {
+      onChanged: (String nickname) {
         setState(() {
+          _isButtonAble = false;
           _textCount = _userNickNameController.text.length;
         });
       },
-      onSaved: (name) => _userNickName = name,
+      onSaved: (name) => user.nickname = name,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
@@ -119,18 +120,20 @@ class _NickNameScreenState extends State<NickNameScreen> {
         actions: <Widget>[
           TextButton(
             child: Text("다음"),
-            onPressed: () {
-              showAlertDialog(
-                  context, "잠깐!", "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?", () {
-                Navigator.pop(context);
-              }, () {
-                Navigator.pop(context);
-                Navigator.pushNamed(
-                  context,
-                  InterestsScreen.id,
-                );
-              });
-            },
+            onPressed: _isButtonAble
+                ? () {
+                    showAlertDialog(
+                      context,
+                      "잠깐!",
+                      "한 번 설정한 닉네임은 바꿀 수 없습니다.\n이대로 진행할까요?",
+                      () {
+                        Navigator.pop(context);
+                      },
+                      () {
+                        Navigator.pop(context);
+                        Get.to(InterestsScreen(), arguments: user);
+                      });
+            } : null,
           ),
         ],
       ),
@@ -163,7 +166,15 @@ class _NickNameScreenState extends State<NickNameScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
                     child: DoubleCheckButton(
-                      onPressed: (){}
+                      onPressed: (){
+                        if(_formKey.currentState.validate()){
+                          setState(() {
+                            _formKey.currentState.save();
+                            _isButtonAble = true;
+                            print(user.nickname);
+                          });
+                        }
+                      }
                       ),
                   ),
                 ],
