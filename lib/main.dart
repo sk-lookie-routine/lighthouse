@@ -11,7 +11,7 @@ import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lighthouse/utilities/styles.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(360, 760),
-      builder: () => MaterialApp(
+      builder: () => GetMaterialApp(
         builder: (context, child) {
           return MediaQuery(
             child: child,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lighthouse/components/buttons/gradeinfo_text_button.dart';
 import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
 import 'package:lighthouse/components/texts/title.dart';
-import 'package:lighthouse/entity/user.dart';
 import 'package:lighthouse/screens/home/home_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';

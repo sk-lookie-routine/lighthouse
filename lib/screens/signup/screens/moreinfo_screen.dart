@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/classes/user.dart';
 import 'package:lighthouse/components/chips/keywords_chip_single.dart';
 import 'package:lighthouse/components/texts/title.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lighthouse/entity/user.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
 import 'package:lighthouse/screens/signup/screens/interests_screen.dart';
 import 'package:lighthouse/services/show_alert_dialog.dart';
@@ -17,6 +17,8 @@ class MoreInfoScreen extends StatefulWidget {
 }
 
 class _MoreInfoScreenState extends State<MoreInfoScreen> {
+  User user = User(); //라우터에서 넘어오는 user객체로 값 저장
+
   String _selectedChip = "";
   List<String> _selectedKeywordsList = ["", "", "", ""];
   bool _isAllEntered = false;
@@ -114,6 +116,7 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
   }
 
   List<String> _getGenderList() {
+    user.keywords["dfdf"] = false;
     List<String> genderList = [];
     genderLabel.forEach((key, value) {
       genderList.add(value);
@@ -122,7 +125,7 @@ class _MoreInfoScreenState extends State<MoreInfoScreen> {
   }
 
   Widget build(BuildContext context) {
-    User user = User();
+
     var info = new Info();
     return Scaffold(
       // resizeToAvoidBottomInset: false,

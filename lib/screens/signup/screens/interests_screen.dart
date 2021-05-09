@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lighthouse/classes/user.dart';
 import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
 import 'package:lighthouse/components/chips/keywords_chip_group.dart';
 import 'package:lighthouse/components/texts/title.dart';
-import 'package:lighthouse/entity/user.dart';
 import 'package:lighthouse/screens/signup/screens/moreinfo_screen.dart';
 import 'package:lighthouse/utilities/variables.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

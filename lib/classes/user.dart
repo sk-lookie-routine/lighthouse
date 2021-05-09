@@ -1,11 +1,17 @@
-import 'package:lighthouse/entity/level_info.dart';
-import '../utilities/variables.dart';
 
+import '../utilities/variables.dart';
+import 'level_info.dart';
+/*
+닉네임
+등급
+관심 키워드
+성별
+학교
+ */
 class User {
   String nickname;
   LevelInfo levelInfo = LevelInfo();
   Map<String, bool> keywords = {
-    //수정
     Keywords.academic[0]: false,
     Keywords.academic[1]: false,
     Keywords.academic[2]: false,
@@ -23,6 +29,7 @@ class User {
   Gender gender;
   String school;
   String grade;
+
 
   User({
     this.nickname,
