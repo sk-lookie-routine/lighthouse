@@ -8,8 +8,11 @@ import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../utilities/variables.dart';
+
 class LetterBoxScreen extends StatelessWidget {
   static const String id = 'letterbox_screen';
+  int stampCount = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -73,20 +76,13 @@ class LetterBoxScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
               child: TopContainer(
-                text: "다른 고민이 있다면\n언제든지 털어놓아보세요.",
-                btnText: "새 편지 쓰러 가기",
-                image: Image.asset(
-                  "assets/images/airplane.png",
-                  width: ScreenUtil().setWidth(72),
-                ),
-                backgroundColor: primaryLightColor,
-                btnTextColor: primaryColor,
+                count: stampCount,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(14)),
               child: StampCountButton(
-                count: 1, //임의의 숫자
+                count: stampCount, //임의의 숫자
               ),
             ),
             Padding(
@@ -96,8 +92,27 @@ class LetterBoxScreen extends StatelessWidget {
                   color: Color(0xffd9d9d9),
               ),
             ),
-            ReceivedLetter(),
-            ReceivedLetter(),
+            ReceivedLetter(
+              nickname: "코천서영님",
+              level: Level.gold,
+              keywords: ["생활패턴","생활패턴"],
+              date: DateTime.utc(2021,4,22),
+              isRead: true,
+            ),
+            ReceivedLetter(
+              nickname: "코천서영님",
+              level: Level.silver,
+              keywords: ["생활패턴","생활패턴"],
+              date: DateTime.utc(2021,4,22),
+              isRead: false,
+            ),
+            ReceivedLetter(
+              nickname: "코천서영님",
+              level: Level.bronze,
+              keywords: ["생활패턴"],
+              date: DateTime.utc(2021,4,22),
+              isRead: false,
+            ),
           ],
         ),
       ),
@@ -112,4 +127,5 @@ class LetterBoxScreen extends StatelessWidget {
       ),
     );
   }
+
 }

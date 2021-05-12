@@ -27,6 +27,7 @@ dev_dependencies:
   uuid: "^3.0.1"
   get: "^4.1.4"
   flutter_webview_plugin: "^0.3.11"
+  intl: ^0.17.0
   
   dio:
   json_annotation:

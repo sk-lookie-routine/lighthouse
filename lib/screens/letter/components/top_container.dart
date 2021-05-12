@@ -4,22 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 
 class TopContainer extends StatelessWidget {
-  final String text;
-  final String btnText;
-  final Image image;
-  final Color btnTextColor;
-  final Color backgroundColor;
+  int count;
 
   TopContainer({
-    this.backgroundColor,
-    this.text,
-    this.btnText,
-    this.image,
-    this.btnTextColor,
+    this.count,
   });
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _getContainer(String text, String btnText, Image image, Color btnTextColor, Color backgroundColor){
     return Container(
       width: ScreenUtil().setWidth(312),
       height: ScreenUtil().setHeight(119),
@@ -42,10 +33,10 @@ class TopContainer extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: notoSans,
-                  fontSize: ScreenUtil().setSp(14)
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: notoSans,
+                    fontSize: ScreenUtil().setSp(14)
                 ),
               ),
               ElevatedButton(
@@ -57,13 +48,13 @@ class TopContainer extends StatelessWidget {
                   minimumSize: Size(ScreenUtil().setWidth(163), ScreenUtil().setHeight(39)),
                 ),
                 child: Text(
-                    btnText,
-                    style: TextStyle(
-                    color: btnTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: notoSans,
-                    fontSize: ScreenUtil().setSp(13)
-                ),
+                  btnText,
+                  style: TextStyle(
+                      color: btnTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: notoSans,
+                      fontSize: ScreenUtil().setSp(13)
+                  ),
                 ),
               ),
             ],
@@ -75,5 +66,33 @@ class TopContainer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    if(count > 0){
+      return _getContainer(
+        "다른 고민이 있다면\n언제든지 털어놓아보세요.",
+        "새 편지 쓰러 가기",
+        Image.asset(
+          "assets/images/airplane.png",
+          width: ScreenUtil().setWidth(72),
+        ),
+        primaryColor,
+        primaryLightColor,
+      );
+    }else if(count == 0){
+      return _getContainer(
+        "우표를 다 썼네요.\n우표 충전 후 편지를 써보세요!",
+        "우표 무료 충전하기",
+        Image.asset(
+          "assets/images/stamp_red.png",
+          width: ScreenUtil().setWidth(72),
+        ),
+        const Color(0xffff5050),
+        const Color(0xffffe8e8),
+      );
+    }
   }
 }
