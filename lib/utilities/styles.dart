@@ -8,8 +8,14 @@ var signUpTextFieldTextStyle = TextStyle(
     fontFamily: notoSans,
     fontSize: ScreenUtil().setSp(16));
 
-var appBarTitleDefaultextStyle = TextStyle(
+var appBarTitleDarkTextStyle = TextStyle(
     color:  const Color(0xff161616),
+    fontWeight: FontWeight.w500,
+    fontFamily: notoSans,
+    fontSize: ScreenUtil().setSp(18));
+
+var appBarTitleLightTextStyle = TextStyle(
+    color:  const Color(0xffffffff),
     fontWeight: FontWeight.w500,
     fontFamily: notoSans,
     fontSize: ScreenUtil().setSp(18));

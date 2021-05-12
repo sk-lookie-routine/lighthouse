@@ -18,7 +18,7 @@ class DoubleCheckButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           primary: primaryLightColor,
           elevation: 0,
-          minimumSize: Size(ScreenUtil().setWidth(82), ScreenUtil().setWidth(44)),
+          minimumSize: Size(ScreenUtil().setWidth(82), ScreenUtil().setHeight(44)),
         ),
         child: Text(
           "중복확인",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/screens/home/home_screen.dart';
 import 'package:lighthouse/screens/letter/letter_screen.dart';
+import 'package:lighthouse/screens/letter/screens/letterbox_screen.dart';
 import 'package:lighthouse/screens/signin/signin_screen.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
 import 'package:lighthouse/screens/signup/screens/interests_screen.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: WelcomeScreen(),
+        home: HomeScreen(),
         routes: {
           HomeScreen.id: (context) => HomeScreen(),
           WelcomeScreen.id: (context) => WelcomeScreen(),
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           InterestsScreen.id: (context) => InterestsScreen(),
           FinishScreen.id: (context) => FinishScreen(),
           LetterScreen.id: (context) => LetterScreen(),
+          LetterBoxScreen.id: (context) => LetterScreen(),
         },
       ),
     );

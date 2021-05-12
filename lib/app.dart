@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class App extends StatelessWidget {
   @override

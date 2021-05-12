@@ -73,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
       appBar: AppBar(
         title: Text(
             "이메일 로그인",
-          style: appBarTitleDefaultextStyle,
+          style: appBarTitleDarkTextStyle,
         ),
       ),
       body: Background(

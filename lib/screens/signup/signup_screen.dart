@@ -4,6 +4,7 @@ import 'package:lighthouse/components/buttons/double_check_button.dart';
 import 'package:lighthouse/components/buttons/rounded_finish_button.dart';
 import 'package:lighthouse/components/texts/validate_text.dart';
 import 'package:lighthouse/screens/signup/screens/nickname_screen.dart';
+import 'package:lighthouse/services/auth_service.dart';
 import 'package:lighthouse/utilities/colors.dart';
 import 'package:lighthouse/utilities/fonts.dart';
 import 'package:lighthouse/utilities/styles.dart';
@@ -81,7 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   validatePassword(String value) {
     Pattern pattern =
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{8,16}$";
+        r"^[a-zA-Z0-9.!@#$%&'*+/=?^_`{|}~-]{8,16}$";
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value) || value == null){
       passwordValidation.text = ValidationTexts.unValidPasswordType;
@@ -119,7 +120,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         setState(() {
           validateEmail(_userEmail);
           if(emailValidation.validateState){
-            print(" 들엉모");
             emailBorderColor = primaryColor;
           }else{
             emailBorderColor = errorColor;
@@ -193,7 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         title: Text(
           "회원가입",
-          style: appBarTitleDefaultextStyle,
+          style: appBarTitleDarkTextStyle,
         ),
       ),
       body: Padding(
@@ -285,6 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: RoundedFinishedButton(
                   text: '가입하기',
                   onPressed: () {
+                    AuthService().signUp(_userEmail, _userPassword);
                     Navigator.pushNamed(
                         context,
                         NickNameScreen.id
