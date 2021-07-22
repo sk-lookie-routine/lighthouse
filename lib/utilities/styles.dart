@@ -41,3 +41,9 @@ var SignUpMiniTitleTextStyle = TextStyle(
     color:  const Color(0xffb2b2b2),
     fontFamily: notoSans,
     fontSize: ScreenUtil().setSp(10));
+
+var profileSubTitleTextStyle = TextStyle(
+    color: Colors.black,
+    fontFamily: notoSans,
+    fontSize: ScreenUtil().setSp(14.0),
+);

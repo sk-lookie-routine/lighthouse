@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lighthouse/screens/letter/letter_screen.dart';
 import 'package:lighthouse/screens/letter/screens/letterbox_screen.dart';
+import 'package:lighthouse/screens/profile/profile_screen.dart';
 import 'package:lighthouse/screens/signup/screens/finish_screen.dart';
 import 'package:lighthouse/screens/welcome/welcome_screen.dart';
 import 'package:lighthouse/utilities/colors.dart';
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           LetterScreen(),
           WelcomeScreen(),
           LetterScreen(),
-          WelcomeScreen(),
+          ProfileScreen(),
           LetterBoxScreen(),
         ],
       ),

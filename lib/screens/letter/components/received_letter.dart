@@ -4,7 +4,7 @@ import 'package:lighthouse/utilities/fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lighthouse/utilities/variables.dart';
 import 'package:intl/intl.dart';
-import '../../../components/containers/squared_letter_keyword.dart';
+import 'squared_letter_keyword.dart';
 import '../../../utilities/fonts.dart';
 
 class ReceivedLetter extends StatelessWidget {
